@@ -1,0 +1,950 @@
+#include "study_in_pink2.h"
+
+////////////////////////////////////////////////////////////////////////
+/// STUDENT'S ANSWER BEGINS HERE
+/// Complete the following functions
+/// DO NOT modify any parameters in the functions.
+////////////////////////////////////////////////////////////////////////
+
+//3.1 3.2 3.3
+// Implementation of MapElement
+
+MapElement::MapElement(ElementType in_type) : type(in_type) {}
+
+MapElement::~MapElement() {}
+
+ElementType MapElement::getType() const {
+    return type;
+}
+
+// Implementation of Path
+
+Path::Path() : MapElement(PATH) {}
+
+// Implementation of Wall
+
+Wall::Wall() : MapElement(WALL) {}
+
+// Implementation of FakeWall
+
+FakeWall::FakeWall(int in_req_exp) : MapElement(FAKE_WALL), req_exp(in_req_exp) {}
+
+int FakeWall::getReqExp() const {
+    int r = 0; // Replace with actual row value
+    int c = 0; // Replace with actual column value
+    int in_req_exp = (r * 257 + c * 139 + 89) % 900 + 1;
+    return in_req_exp;
+}
+
+// Implementation of Position
+
+//const Position Position::npos;
+
+Position::Position(int r, int c) : r(r), c(c) {}
+
+Position::Position(const string &str_pos) {
+    stringstream ss(str_pos);
+    char ch;
+    ss >> ch >> r >> ch >> c >> ch;
+}
+
+int Position::getRow() const {
+    return r;
+}
+
+int Position::getCol() const {
+    return c;
+}
+
+void Position::setRow(int r) {
+    this->r = r;
+}
+
+void Position::setCol(int c) {
+    this->c = c;
+}
+
+string Position::str() const {
+    stringstream ss;
+    ss << "(" << r << "," << c << ")";
+    return ss.str();
+}
+
+bool Position::isEqual(int in_r, int in_c) const {
+    return (r == in_r && c == in_c);
+}
+
+// Implementation of Map
+
+Map::Map(int num_rows, int num_cols, int num_walls, Position *array_walls, int num_fake_walls, Position *array_fake_walls) : num_rows(num_rows), num_cols(num_cols) {
+    map = new MapElement**[num_rows];
+    for (int i = 0; i < num_rows; ++i) {
+        map[i] = new MapElement*[num_cols];
+        for (int j = 0; j < num_cols; ++j) {
+            map[i][j] = new Path(); // Initialize as Path by default
+        }
+    }
+
+    // Place walls on the map
+    for (int i = 0; i < num_walls; ++i) {
+        int row = array_walls[i].getRow();
+        int col = array_walls[i].getCol();
+        delete map[row][col]; // Delete existing element
+        map[row][col] = new Wall();
+    }
+
+    // Place fake walls on the map
+    for (int i = 0; i < num_fake_walls; ++i) {
+        int row = array_fake_walls[i].getRow();
+        int col = array_fake_walls[i].getCol();
+        delete map[row][col]; // Delete existing element
+        int req_exp = (row * 257 + col * 139 + 89) % 900 + 1;
+        map[row][col] = new FakeWall(req_exp);
+    }
+}
+
+Map::~Map() {
+    for (int i = 0; i < num_rows; ++i) {
+        for (int j = 0; j < num_cols; ++j) {
+            delete map[i][j];
+        }
+        delete[] map[i];
+    }
+    delete[] map;
+}
+
+
+//3.4
+// Khởi tạo biến static npos trong class Position
+const Position Position::npos = Position(-1, -1);
+
+// Hiện thực constructor của MovingObject
+MovingObject::MovingObject(int index, const Position pos, Map *map, const string &name)
+    : index(index), pos(pos), map(map), name(name) {}
+
+// Hủy ảo (virtual destructor)
+MovingObject::~MovingObject() {}
+
+// Phương thức getCurrentPosition trả về vị trí hiện tại của đối tượng di chuyển
+Position MovingObject::getCurrentPosition() const {
+    return pos;
+}
+// Hiện thực phương thức isValid trong class Map
+bool Map::isValid(const Position &pos, MovingObject *mv_obj) const {
+    // Kiểm tra xem vị trí pos có nằm trong bản đồ không
+    if (pos.getRow() < 0 || pos.getRow() >= num_rows || pos.getCol() < 0 || pos.getCol() >= num_cols) {
+        return false;
+    }
+
+    // Kiểm tra xem vị trí pos có phù hợp với đối tượng di chuyển không
+    // Ví dụ: Sherlock có thể di chuyển trên FakeWall, nhưng Watson cần kiểm tra EXP
+    MapElement *element = map[pos.getRow()][pos.getCol()];
+    if (element->getType() == FAKE_WALL && mv_obj->getName() == "Watson") {
+        // Kiểm tra EXP của Watson với yêu cầu EXP của FakeWall
+        FakeWall *fake_wall = dynamic_cast<FakeWall *>(element);
+        if (fake_wall && mv_obj->getEXP() < fake_wall->getReqExp()) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+
+
+//3.5
+
+// Constructor của Sherlock
+Sherlock::Sherlock(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+    : MovingObject(index, init_pos, map, "Sherlock"), moving_rule(moving_rule), hp((init_hp < 0) ? 0 : (init_hp > 500) ? 500 : init_hp), exp((init_exp < 0) ? 0 : (init_exp > 900) ? 900 : init_exp){}//, bag() {
+    //    bag = BaseBag();
+    //}
+
+
+
+// Phương thức getNextPosition của Sherlock
+Position Sherlock::getNextPosition() {
+    static size_t current_index = 0;
+    char direction = moving_rule[current_index];
+    current_index = (current_index + 1) % moving_rule.length();
+
+    int new_row = pos.getRow();
+    int new_col = pos.getCol();
+
+    // Di chuyển dựa trên hướng được quy định
+    switch (direction) {
+        case 'L':
+            new_col--;
+            break;
+        case 'R':
+            new_col++;
+            break;
+        case 'U':
+            new_row--;
+            break;
+        case 'D':
+            new_row++;
+            break;
+    }
+
+    Position next_pos(new_row, new_col);
+    return (map->isValid(next_pos, this)) ? next_pos : Position::npos;
+}
+
+// Phương thức move của Sherlock
+void Sherlock::move() {
+    Position next_pos = getNextPosition();
+    if (next_pos != Position::npos) {
+        pos = next_pos;
+    }
+}
+
+// Phương thức str của Sherlock
+string Sherlock::str() const {
+    return "Sherlock[index=" + to_string(index) + ";pos=" + pos.str() + ";moving_rule=" + moving_rule + "]";
+}
+
+
+
+//3.6
+// Constructor của Watson
+Watson::Watson(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+    : MovingObject(index, init_pos, map, "Watson"), moving_rule(moving_rule), hp((init_hp < 0) ? 0 : (init_hp > 500) ? 500 : init_hp), exp((init_exp < 0) ? 0 : (init_exp > 900) ? 900 : init_exp){}//, bag() {
+    //    bag = BaseBag();
+    //}
+
+
+// Phương thức getNextPosition của Watson
+Position Watson::getNextPosition() {
+    static size_t current_index = 0;
+    char direction = moving_rule[current_index];
+    current_index = (current_index + 1) % moving_rule.length();
+
+    int new_row = pos.getRow();
+    int new_col = pos.getCol();
+
+    // Di chuyển dựa trên hướng được quy định
+    switch (direction) {
+        case 'L':
+            new_col--;
+            break;
+        case 'R':
+            new_col++;
+            break;
+        case 'U':
+            new_row--;
+            break;
+        case 'D':
+            new_row++;
+            break;
+    }
+
+    Position next_pos(new_row, new_col);
+    return (map->isValid(next_pos, this)) ? next_pos : Position::npos;
+}
+
+// Phương thức move của Watson
+void Watson::move() {
+    Position next_pos = getNextPosition();
+    if (next_pos != Position::npos) {
+        pos = next_pos;
+    }
+}
+
+// Phương thức str của Watson
+string Watson::str() const {
+    return "Watson[index=" + to_string(index) + ";pos=" + pos.str() + ";moving_rule=" + moving_rule + "]";
+}
+
+
+
+//3.7
+// Constructor của Criminal
+Criminal::Criminal(int index, const Position &init_pos, Map *map, Sherlock *sherlock, Watson *watson)
+    : MovingObject(index, init_pos, map, "Criminal"), sherlock(sherlock), watson(watson) {}
+
+// Phương thức getNextPosition của Criminal
+Position Criminal::getNextPosition() {
+    Position current_pos = pos;
+    int max_distance = 0;
+    Position next_pos = Position::npos;
+
+    // Duyệt qua các hướng đi
+    int directions[4][2] = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}}; //4: 4 hướng 2: đại diện cho 2 p.tử hàng và cột
+    for (int i = 0; i < 4; ++i) {
+        int new_row = current_pos.getRow() + directions[i][0];
+        int new_col = current_pos.getCol() + directions[i][1];
+        Position candidate_pos(new_row, new_col);
+
+        // Kiểm tra vị trí mới có hợp lệ không
+        if (map->isValid(candidate_pos, this)) {
+            // Tính khoảng cách từ vị trí mới đến Sherlock và Watson
+            int distance_to_sherlock = abs(new_row - sherlock->getCurrentPosition().getRow()) +
+                                       abs(new_col - sherlock->getCurrentPosition().getCol());
+            int distance_to_watson = abs(new_row - watson->getCurrentPosition().getRow()) +
+                                     abs(new_col - watson->getCurrentPosition().getCol());
+            int total_distance = distance_to_sherlock + distance_to_watson;
+
+            // Cập nhật vị trí mới nếu tổng khoảng cách lớn nhất
+            if (total_distance > max_distance) {
+                max_distance = total_distance;
+                next_pos = candidate_pos;
+            }
+        }
+    }
+
+    return next_pos;
+}
+
+// Phương thức move của Criminal
+void Criminal::move() {
+    Position next_pos = getNextPosition();
+    if (next_pos != Position::npos) {
+        pos = next_pos;
+    }
+}
+
+// Phương thức str của Criminal
+string Criminal::str() const {
+    return "Criminal[index=" + to_string(index) + ";pos=" + pos.str() + "]";
+}
+
+//3.8
+ArrayMovingObject::ArrayMovingObject(int capacity) : count(0), capacity(capacity) {
+    arr_mv_objs = new MovingObject *[capacity];
+}
+
+ArrayMovingObject::~ArrayMovingObject() {
+    for (int i = 0; i < count; ++i) {
+        delete arr_mv_objs[i]; // Clean up allocated memory for each MovingObject
+    }
+    delete[] arr_mv_objs; // Clean up allocated memory for the array
+}
+
+bool ArrayMovingObject::isFull() const {
+    return count == capacity;
+}
+
+bool ArrayMovingObject::add(MovingObject *mv_obj) {
+    if (isFull()) {
+        return false;
+    }
+    arr_mv_objs[count++] = mv_obj;
+    return true;
+}
+
+MovingObject *ArrayMovingObject::get(int index) const {
+    if (index >= 0 && index < count) {
+        return arr_mv_objs[index];
+    }
+    return nullptr;
+}
+
+int ArrayMovingObject::size() const {
+    return count;
+}
+
+std::string ArrayMovingObject::str() const {
+    std::stringstream ss;
+    ss << "ArrayMovingObject[count=" << count << ";capacity=" << capacity << ";";
+    for (int i = 0; i < count; ++i) {
+        ss << arr_mv_objs[i]->str();
+        if (i < count - 1) {
+            ss << ";";
+        }
+    }
+    ss << "]";
+    return ss.str();
+}
+
+
+//3.9
+Configuration::Configuration(const string &filepath) {
+    ifstream file(filepath);
+    if (!file.is_open()) {
+        cerr << "Error opening configuration file: " << filepath << endl;
+        return;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        string key, value;
+        getline(iss, key, '=');
+        getline(iss, value);
+        
+        if (key == "MAP_NUM_ROWS") {
+            map_num_rows = stoi(value);
+        } else if (key == "MAP_NUM_COLS") {
+            map_num_cols = stoi(value);
+        } else if (key == "MAX_NUM_MOVING_OBJECTS") {
+            max_num_moving_objects = stoi(value);
+        } else if (key == "ARRAY_WALLS") {
+            value = value.substr(1, value.size() - 2); // Remove '[' and ']'
+            istringstream ss(value);
+            string pos_str;
+            num_walls = 0;
+            while (getline(ss, pos_str, ';')) {
+                num_walls++;
+            }
+            arr_walls = new Position[num_walls];
+            ss.clear();
+            ss.seekg(0);
+            int idx = 0;
+            while (getline(ss, pos_str, ';')) {
+                int row, col;
+                sscanf(pos_str.c_str(), "(%d,%d)", &row, &col);
+                arr_walls[idx++] = Position(row, col);
+            }
+        } else if (key == "ARRAY_FAKE_WALLS") {
+            // Parse array fake walls
+            // Example: ARRAY_FAKE_WALLS=[(4,5)]
+            value = value.substr(1, value.size() - 2); // Remove '[' and ']'
+            istringstream ss(value);
+            string pos_str;
+            num_fake_walls = 0;
+            while (getline(ss, pos_str, ';')) {
+                num_fake_walls++;
+            }
+            arr_fake_walls = new Position[num_fake_walls];
+            ss.clear();
+            ss.seekg(0);
+            int idx = 0;
+            while (getline(ss, pos_str, ';')) {
+                int row, col;
+                sscanf(pos_str.c_str(), "(%d,%d)", &row, &col);
+                arr_fake_walls[idx++] = Position(row, col);
+            }
+        } else if (key == "SHERLOCK_MOVING_RULE") {
+            sherlock_moving_rule = value;
+        } else if (key == "SHERLOCK_INIT_POS") {
+            int row, col;
+            sscanf(value.c_str(), "(%d,%d)", &row, &col);
+            sherlock_init_pos = Position(row, col);
+        } else if (key == "SHERLOCK_INIT_HP") {
+            sherlock_init_hp = stoi(value);
+        } else if (key == "SHERLOCK_INIT_EXP") {
+            sherlock_init_exp = stoi(value);
+        } else if (key == "WATSON_MOVING_RULE") {
+            watson_moving_rule = value;
+        } else if (key == "WATSON_INIT_POS") {
+            int row, col;
+            sscanf(value.c_str(), "(%d,%d)", &row, &col);
+            watson_init_pos = Position(row, col);
+        } else if (key == "WATSON_INIT_HP") {
+            watson_init_hp = stoi(value);
+        } else if (key == "WATSON_INIT_EXP") {
+            watson_init_exp = stoi(value);
+        } else if (key == "CRIMINAL_INIT_POS") {
+            int row, col;
+            sscanf(value.c_str(), "(%d,%d)", &row, &col);
+            criminal_init_pos = Position(row, col);
+        } else if (key == "NUM_STEPS") {
+            num_steps = stoi(value);
+        }
+    }
+
+    file.close();
+}
+
+Configuration::~Configuration() {
+    delete[] arr_walls;
+    delete[] arr_fake_walls;
+}
+
+string Configuration::str() const {
+    stringstream ss;
+    ss << "Configuration[" << endl;
+    ss << "MAP_NUM_ROWS=" << map_num_rows << endl;
+    ss << "MAP_NUM_COLS=" << map_num_cols << endl;
+    ss << "MAX_NUM_MOVING_OBJECTS=" << max_num_moving_objects << endl;
+    ss << "NUM_WALLS=" << num_walls << endl;
+    ss << "ARRAY_WALLS=[";
+    for (int i = 0; i < num_walls; ++i) {
+        if (i > 0) ss << ";";
+        ss << "(" << arr_walls[i].getRow() << "," << arr_walls[i].getCol() << ")";
+    }
+    ss << "]" << endl;
+    ss << "NUM_FAKE_WALLS=" << num_fake_walls << endl;
+    ss << "ARRAY_FAKE_WALLS=[";
+    for (int i = 0; i < num_fake_walls; ++i) {
+        if (i > 0) ss << ";";
+        ss << "(" << arr_fake_walls[i].getRow() << "," << arr_fake_walls[i].getCol() << ")";
+    }
+    ss << "]" << endl;
+    ss << "SHERLOCK_MOVING_RULE=" << sherlock_moving_rule << endl;
+    ss << "SHERLOCK_INIT_POS=(" << sherlock_init_pos.getRow() << "," << sherlock_init_pos.getCol() << ")" << endl;
+    ss << "SHERLOCK_INIT_HP=" << sherlock_init_hp << endl;
+    ss << "SHERLOCK_INIT_EXP=" << sherlock_init_exp << endl;
+    ss << "WATSON_MOVING_RULE=" << watson_moving_rule << endl;
+    ss << "WATSON_INIT_POS=(" << watson_init_pos.getRow() << "," << watson_init_pos.getCol() << ")" << endl;
+    ss << "WATSON_INIT_HP=" << watson_init_hp << endl;
+    ss << "WATSON_INIT_EXP=" << watson_init_exp << endl;
+    ss << "CRIMINAL_INIT_POS=(" << criminal_init_pos.getRow() << "," << criminal_init_pos.getCol() << ")" << endl;
+    ss << "NUM_STEPS=" << num_steps << endl;
+    ss << "]";
+    return ss.str();
+}
+
+
+
+//3.10
+// Implementation of class Robot
+Robot::Robot(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal)
+    : MovingObject(index, init_pos, map), robot_type(robot_type), item(nullptr) {}
+
+Robot::~Robot() {
+    delete item;
+}
+
+void Robot::move() {
+    Position nextPos = getNextPosition();
+    if (nextPos != Position(-1, -1)) {
+        setPosition(nextPos);
+    }
+}
+
+int Robot::getDistance(Sherlock* sherlock) {
+    return -1; // Default implementation, overridden in derived classes
+}
+
+int Robot::getDistance(Watson* watson) {
+    return -1; // Default implementation, overridden in derived classes
+}
+
+std::string Robot::str() const {
+    std::string robotTypeStr;
+    switch (robot_type) {
+        case C:
+            robotTypeStr = "C";
+            break;
+        case S:
+            robotTypeStr = "S";
+            break;
+        case W:
+            robotTypeStr = "W";
+            break;
+        case SW:
+            robotTypeStr = "SW";
+            break;
+    }
+    return "Robot[pos=" + getPosition().str() + ";type=" + robotTypeStr + ";dist=]";
+}
+
+// Implementation of class RobotC
+RobotC::RobotC(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal) {}
+
+RobotC::~RobotC() {}
+
+Position RobotC::getNextPosition() {
+    return getPosition(); // RobotC stays in the same position as the criminal
+}
+
+// Implementation of class RobotS
+RobotS::RobotS(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal), sherlock(sherlock) {}
+
+RobotS::~RobotS() {}
+
+Position RobotS::getNextPosition() {
+    // Calculate Manhattan distance to Sherlock
+    int distToSherlock = abs(getPosition().getX() - sherlock->getPosition().getX()) + abs(getPosition().getY() - sherlock->getPosition().getY());
+    return sherlock->getPosition(); // RobotS moves towards Sherlock
+}
+
+// Implementation of class RobotW
+RobotW::RobotW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Watson* watson)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal), watson(watson) {}
+
+RobotW::~RobotW() {}
+
+Position RobotW::getNextPosition() {
+    // Calculate Manhattan distance to Watson
+    int distToWatson = abs(getPosition().getX() - watson->getPosition().getX()) + abs(getPosition().getY() - watson->getPosition().getY());
+    return watson->getPosition(); // RobotW moves towards Watson
+}
+
+// Implementation of class RobotSW
+RobotSW::RobotSW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock, Watson* watson)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal), sherlock(sherlock), watson(watson) {}
+
+RobotSW::~RobotSW() {}
+
+Position RobotSW::getNextPosition() {
+    // Calculate Manhattan distances to Sherlock and Watson
+    int distToSherlock = abs(getPosition().getX() - sherlock->getPosition().getX()) + abs(getPosition().getY() - sherlock->getPosition().getY());
+    int distToWatson = abs(getPosition().getX() - watson->getPosition().getX()) + abs(getPosition().getY() - watson->getPosition().getY());
+
+    // Move towards the closer target (Sherlock or Watson)
+    if (distToSherlock < distToWatson) {
+        return sherlock->getPosition();
+    } else {
+        return watson->getPosition();
+    }
+}
+
+//3.11
+// Implementation of MagicBook class
+bool MagicBook::canUse(Character* obj, Robot* robot) {
+    return (obj->getEXP() <= 350);
+}
+
+void MagicBook::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        int expRecovered = obj->getEXP() * 0.25;
+        obj->setEXP(obj->getEXP() + expRecovered);
+        std::cout << obj->getName() << " used MagicBook and recovered " << expRecovered << " EXP." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use MagicBook at this time." << std::endl;
+    }
+}
+
+// Implementation of EnergyDrink class
+bool EnergyDrink::canUse(Character* obj, Robot* robot) {
+    return (obj->getHP() <= 100);
+}
+
+void EnergyDrink::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        int hpRecovered = obj->getHP() * 0.2;
+        obj->setHP(obj->getHP() + hpRecovered);
+        std::cout << obj->getName() << " used EnergyDrink and recovered " << hpRecovered << " HP." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use EnergyDrink at this time." << std::endl;
+    }
+}
+
+// Implementation of FirstAid class
+bool FirstAid::canUse(Character* obj, Robot* robot) {
+    return (obj->getHP() <= 100 || obj->getEXP() <= 350);
+}
+
+void FirstAid::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        int hpRecovered = obj->getHP() * 0.5;
+        obj->setHP(obj->getHP() + hpRecovered);
+        std::cout << obj->getName() << " used FirstAid and recovered " << hpRecovered << " HP." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use FirstAid at this time." << std::endl;
+    }
+}
+
+// Implementation of ExcemptionCard class
+bool ExcemptionCard::canUse(Character* obj, Robot* robot) {
+    return (obj->getName() == "Sherlock" && obj->getHP() % 2 != 0);
+}
+
+void ExcemptionCard::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        std::cout << obj->getName() << " used ExcemptionCard to bypass the challenge." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use ExcemptionCard at this time." << std::endl;
+    }
+}
+
+// Implementation of PassingCard class
+PassingCard::PassingCard(int i, int j) {
+    int t = (i * 11 + j) % 4;
+    switch (t) {
+        case 0:
+            challenge = "RobotS";
+            break;
+        case 1:
+            challenge = "RobotC";
+            break;
+        case 2:
+            challenge = "RobotSW";
+            break;
+        case 3:
+            challenge = "all";
+            break;
+    }
+}
+
+bool PassingCard::canUse(Character* obj, Robot* robot) {
+    return (obj->getName() == "Watson" && obj->getHP() % 2 == 0);
+}
+
+void PassingCard::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        std::cout << obj->getName() << " used PassingCard to bypass the challenge." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use PassingCard at this time." << std::endl;
+    }
+}
+
+//3.12
+// BaseBag implementation
+BaseBag::BaseBag() : itemCount(0) {}
+
+BaseBag::~BaseBag() {
+    for (int i = 0; i < itemCount; ++i) {
+        delete items[i];
+    }
+}
+
+bool BaseBag::insert(BaseItem* item) {
+    if (itemCount < 15) {
+        items[itemCount++] = item;
+        return true;
+    }
+    return false;
+}
+
+BaseItem* BaseBag::get() {
+    if (itemCount > 0) {
+        BaseItem* item = items[0];
+        for (int i = 0; i < itemCount - 1; ++i) {
+            items[i] = items[i + 1];
+        }
+        --itemCount;
+        return item;
+    }
+    return nullptr;
+}
+
+BaseItem* BaseBag::get(ItemType itemType) {
+    std::string itemTypeString;
+    switch(itemType) {
+        case ItemType::MAGIC_BOOK:
+            itemTypeString = "MagicBook";
+            break;
+        case ItemType::ENERGY_DRINK:
+            itemTypeString = "EnergyDrink";
+            break;
+        case ItemType::FIRST_AID:
+            itemTypeString = "FirstAid";
+            break;
+        case ItemType::EXCEMPTION_CARD:
+            itemTypeString = "ExcemptionCard";
+            break;
+        case ItemType::PASSING_CARD:
+            itemTypeString = "PassingCard";
+            break;
+    }
+
+    for (int i = 0; i < itemCount; ++i) {
+        if (items[i]->getItemType() == itemTypeString) {
+            BaseItem* item = items[i];
+            for (int j = i; j < itemCount - 1; ++j) {
+                items[j] = items[j + 1];
+            }
+            --itemCount;
+            return item;
+        }
+    }
+    return nullptr;
+}
+
+std::string BaseBag::str() const {
+    std::string result = "Bag[count=" + std::to_string(itemCount) + ";";
+    for (int i = 0; i < itemCount; ++i) {
+        result += items[i]->getItemType();
+        if (i < itemCount - 1) {
+            result += ",";
+        }
+    }
+    result += "]";
+    return result;
+}
+
+// Implement SherlockBag
+SherlockBag::SherlockBag() {
+    // Không cần thực hiện bất kỳ thao tác nào trong constructor
+}
+
+bool SherlockBag::giveItemsTo(WatsonBag* watsonBag) {
+    bool success = false;
+    for (int i = 0; i < itemCount; ++i) {
+        BaseItem* item = get();
+        if (item != nullptr) {
+            success = watsonBag->insert(item);
+        }
+    }
+    return success;
+}
+
+// Implement WatsonBag
+WatsonBag::WatsonBag() {
+    // Không cần thực hiện bất kỳ thao tác nào trong constructor
+}
+
+bool WatsonBag::giveItemsTo(SherlockBag* sherlockBag) {
+    bool success = false;
+    for (int i = 0; i < itemCount; ++i) {
+        BaseItem* item = get();
+        if (item != nullptr) {
+            success = sherlockBag->insert(item);
+        }
+    }
+    return success;
+}
+
+
+
+
+
+//3.13
+StudyPinkProgram::StudyPinkProgram(const string &config_file_path) {
+    // Khởi tạo các đối tượng từ tập tin cấu hình
+    ifstream configFile(config_file_path);
+    if (!configFile.is_open()) {
+        cerr << "Error: Unable to open configuration file" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Đọc các thông tin từ tập tin cấu hình và khởi tạo các đối tượng tương ứng
+    string line;
+    while (getline(configFile, line)) {
+        stringstream ss(line);
+        string type;
+        ss >> type;
+        if (type == "Sherlock") {
+            string name;
+            int exp, hp, pos;
+            ss >> name >> exp >> hp >> pos;
+            Position init_pos(pos); // Tạo vị trí khởi tạo từ pos
+            sherlock = new Sherlock(1, "moving_rule", init_pos, nullptr, hp, exp); // Thay nullptr bằng con trỏ thực sự tới Map nếu có
+        } else if (type == "Watson") {
+            string name;
+            int exp, hp, pos;
+            ss >> name >> exp >> hp >> pos;
+            Position init_pos(pos); // Tạo vị trí khởi tạo từ pos
+            watson = new Watson(1, "moving_rule", init_pos, nullptr, hp, exp); // Thay nullptr bằng con trỏ thực sự tới Map nếu có
+        } else if (type == "Criminal") {
+            string name;
+            int exp, hp, pos;
+            ss >> name >> exp >> hp >> pos;
+            Position init_pos(pos); // Tạo vị trí khởi tạo từ pos
+            criminal = new Criminal(1, init_pos, nullptr, nullptr, nullptr); // Thay nullptr bằng con trỏ thực sự tới Sherlock và Watson nếu có
+        } else if (type == "Map") {
+            int num_rows, num_cols;
+            ss >> num_rows >> num_cols;
+            map = new Map(num_rows, num_cols);
+        }
+    }
+
+    // Khởi tạo mảng các đối tượng di chuyển và thêm vào các đối tượng
+    arr_mv_objs = new ArrayMovingObject(10);
+    arr_mv_objs->add(criminal);
+    arr_mv_objs->add(sherlock);
+    arr_mv_objs->add(watson);
+}
+
+bool StudyPinkProgram::isStop() const {
+    // Kiểm tra các điều kiện dừng
+    if (sherlock->getHP() == 0 || watson->getHP() == 0 ||
+        sherlock->getCurrentPosition() == criminal->getCurrentPosition() ||
+        watson->getCurrentPosition() == criminal->getCurrentPosition()) {
+        return true;
+    }
+    return false;
+}
+
+void StudyPinkProgram::run(bool verbose) {
+    // Thực hiện vòng lặp chạy các bước
+    for (int istep = 0; istep < config->num_steps; ++istep) {
+        // Chạy từng đối tượng di chuyển trong mảng
+        for (int i = 0; i < arr_mv_objs->size(); ++i) {
+            // Di chuyển đối tượng
+            arr_mv_objs->get(i)->move();
+
+            // Kiểm tra điều kiện dừng
+            if (isStop()) {
+                printStep(istep);
+                break;
+            }
+
+            // In ra thông tin nếu verbose được bật
+            if (verbose) {
+                printStep(istep);
+            }
+
+            // Kiểm tra và xử lý va chạm giữa các đối tượng
+            for (int j = 0; j < arr_mv_objs->size(); ++j) {
+                MovingObject* obj1 = arr_mv_objs->get(i);
+                MovingObject* obj2 = arr_mv_objs->get(j);
+                if (obj1 != obj2 && obj1->getCurrentPosition() == obj2->getCurrentPosition()) {
+                    // Xử lý va chạm giữa obj1 và obj2
+                    if (Sherlock* sh = dynamic_cast<Sherlock*>(obj1)) {
+                        if (RobotS* robotS = dynamic_cast<RobotS*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotS
+                            if (sh->getEXP() > 400) {
+                                // Sherlock giải quyết được bài toán và nhận vật phẩm từ RobotS
+                                BaseItem* item = robotS->getItem();
+                                if (item != nullptr) {
+                                    sh->addItemToBag(item);
+                                }
+                                } else {
+                                    // Sherlock không giải quyết được bài toán, mất 10% EXP
+                                    sh->decreaseEXP(0.1);
+                                }
+                        } else if (RobotW* robotW = dynamic_cast<RobotW*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotW
+                            // Sherlock vượt qua và nhận vật phẩm từ RobotW
+                            BaseItem* item = robotW->getItem();
+                            if (item != nullptr) {
+                                sh->addItemToBag(item);
+                            }
+                        } else if (RobotSW* robotSW = dynamic_cast<RobotSW*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotSW
+                            if (sh->getEXP() > 300 && sh->getHP() > 335) {
+                                // Sherlock chiến thắng RobotSW và nhận vật phẩm từ RobotSW
+                                BaseItem* item = robotSW->getItem();
+                                if (item != nullptr) {
+                                    sh->addItemToBag(item);
+                                }
+                                } else {
+                                    // Sherlock không thắng RobotSW, mất 15% HP và 15% EXP
+                                    sh->decreaseHP(0.15);
+                                    sh->decreaseEXP(0.15);
+                                }
+                        } else if (RobotC* robotC = dynamic_cast<RobotC*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotC
+                            if (sh->getEXP() > 500) {
+                                // Sherlock chiến thắng RobotC và bắt được tên tội phạm
+                                criminal->setCaught(true);
+                            } else {
+                                // Sherlock không thắng RobotC, tiêu diệt RobotC và nhận vật phẩm từ RobotC
+                                BaseItem* item = robotC->getItem();
+                                if (item != nullptr) {
+                                    sh->addItemToBag(item);
+                                }
+                            }
+                        } else if (FakeWall* fakeWall = dynamic_cast<FakeWall*>(obj2)) {
+                            // Xử lý khi Sherlock gặp FakeWall
+                        }
+                    } else if (Watson* w = dynamic_cast<Watson*>(obj1)) {
+                        if (RobotS* robotS = dynamic_cast<RobotS*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotS
+                            // TODO: Xử lý logic khi Watson gặp RobotS
+                        } else if (RobotW* robotW = dynamic_cast<RobotW*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotW
+                            // TODO: Xử lý logic khi Watson gặp RobotW
+                        } else if (RobotSW* robotSW = dynamic_cast<RobotSW*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotSW
+                            // TODO: Xử lý logic khi Watson gặp RobotSW
+                        } else if (RobotC* robotC = dynamic_cast<RobotC*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotC
+                            // TODO: Xử lý logic khi Watson gặp RobotC
+                        } else if (FakeWall* fakeWall = dynamic_cast<FakeWall*>(obj2)) {
+                            // Xử lý khi Watson gặp FakeWall
+                            // TODO: Xử lý logic khi Watson gặp FakeWall
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // In kết quả cuối cùng
+    printResult();
+}
+
+
+
+////////////////////////////////////////////////
+/// END OF STUDENT'S ANSWER
+////////////////////////////////////////////////

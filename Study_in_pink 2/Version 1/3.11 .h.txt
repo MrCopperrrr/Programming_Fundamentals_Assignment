@@ -1,0 +1,110 @@
+//3.11 .h
+class Character {
+    friend class TestStudyInPink;
+public:
+    Character(const std::string& name, int hp, int exp);
+    virtual ~Character();
+
+    void setHP(int hp);
+    int getHP() const;
+
+    void setEXP(int exp);
+    int getEXP() const;
+
+    void setName(const std::string& name);
+    std::string getName() const;
+
+    virtual bool canUseItem(BaseItem* item, Robot* robot) = 0;
+    virtual void useItem(BaseItem* item, Robot* robot) = 0;
+
+    virtual void encounter(MovingObject* obj) = 0;
+
+protected:
+    std::string name;
+    int hp;
+    int exp;
+};
+
+Character::Character(const std::string& name, int hp, int exp)
+    : name(name), hp(hp), exp(exp) {}
+
+Character::~Character() {}
+
+void Character::setHP(int hp) {
+    this->hp = hp;
+}
+
+int Character::getHP() const {
+    return hp;
+}
+
+void Character::setEXP(int exp) {
+    this->exp = exp;
+}
+
+int Character::getEXP() const {
+    return exp;
+}
+
+void Character::setName(const std::string& name) {
+    this->name = name;
+}
+
+std::string Character::getName() const {
+    return name;
+}
+
+
+class BaseItem {
+    friend class TestStudyInPink;
+public:
+    BaseItem();
+    virtual ~BaseItem();
+    virtual std::string getItemType() const = 0; // Thêm phương thức để trả về loại vật phẩm
+    virtual bool canUse(Character* obj, Robot* robot) = 0;
+    virtual void use(Character* obj, Robot* robot) = 0;
+};
+
+class MagicBook : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "MagicBook"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class EnergyDrink : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "EnergyDrink"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class FirstAid : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "FirstAid"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class ExcemptionCard : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "ExcemptionCard"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class PassingCard : public BaseItem {
+    friend class TestStudyInPink;
+private:
+    std::string challenge;
+
+public:
+    PassingCard(int i, int j);
+    std::string getItemType() const override { return "PassingCard"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+}; 

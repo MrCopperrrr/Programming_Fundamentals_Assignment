@@ -1,0 +1,47 @@
+//3.8 .cpp
+ArrayMovingObject::ArrayMovingObject(int capacity) : count(0), capacity(capacity) {
+    arr_mv_objs = new MovingObject *[capacity];
+}
+
+ArrayMovingObject::~ArrayMovingObject() {
+    for (int i = 0; i < count; ++i) {
+        delete arr_mv_objs[i]; // Clean up allocated memory for each MovingObject
+    }
+    delete[] arr_mv_objs; // Clean up allocated memory for the array
+}
+
+bool ArrayMovingObject::isFull() const {
+    return count == capacity;
+}
+
+bool ArrayMovingObject::add(MovingObject *mv_obj) {
+    if (isFull()) {
+        return false;
+    }
+    arr_mv_objs[count++] = mv_obj;
+    return true;
+}
+
+MovingObject *ArrayMovingObject::get(int index) const {
+    if (index >= 0 && index < count) {
+        return arr_mv_objs[index];
+    }
+    return nullptr;
+}
+
+int ArrayMovingObject::size() const {
+    return count;
+}
+
+std::string ArrayMovingObject::str() const {
+    std::stringstream ss;
+    ss << "ArrayMovingObject[count=" << count << ";capacity=" << capacity << ";";
+    for (int i = 0; i < count; ++i) {
+        ss << arr_mv_objs[i]->str();
+        if (i < count - 1) {
+            ss << ";";
+        }
+    }
+    ss << "]";
+    return ss.str();
+}

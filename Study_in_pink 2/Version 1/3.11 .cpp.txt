@@ -1,0 +1,89 @@
+//3.11 .cpp
+// Implementation of MagicBook class
+bool MagicBook::canUse(Character* obj, Robot* robot) {
+    return (obj->getEXP() <= 350);
+}
+
+void MagicBook::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        int expRecovered = obj->getEXP() * 0.25;
+        obj->setEXP(obj->getEXP() + expRecovered);
+        std::cout << obj->getName() << " used MagicBook and recovered " << expRecovered << " EXP." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use MagicBook at this time." << std::endl;
+    }
+}
+
+// Implementation of EnergyDrink class
+bool EnergyDrink::canUse(Character* obj, Robot* robot) {
+    return (obj->getHP() <= 100);
+}
+
+void EnergyDrink::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        int hpRecovered = obj->getHP() * 0.2;
+        obj->setHP(obj->getHP() + hpRecovered);
+        std::cout << obj->getName() << " used EnergyDrink and recovered " << hpRecovered << " HP." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use EnergyDrink at this time." << std::endl;
+    }
+}
+
+// Implementation of FirstAid class
+bool FirstAid::canUse(Character* obj, Robot* robot) {
+    return (obj->getHP() <= 100 || obj->getEXP() <= 350);
+}
+
+void FirstAid::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        int hpRecovered = obj->getHP() * 0.5;
+        obj->setHP(obj->getHP() + hpRecovered);
+        std::cout << obj->getName() << " used FirstAid and recovered " << hpRecovered << " HP." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use FirstAid at this time." << std::endl;
+    }
+}
+
+// Implementation of ExcemptionCard class
+bool ExcemptionCard::canUse(Character* obj, Robot* robot) {
+    return (obj->getName() == "Sherlock" && obj->getHP() % 2 != 0);
+}
+
+void ExcemptionCard::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        std::cout << obj->getName() << " used ExcemptionCard to bypass the challenge." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use ExcemptionCard at this time." << std::endl;
+    }
+}
+
+// Implementation of PassingCard class
+PassingCard::PassingCard(int i, int j) {
+    int t = (i * 11 + j) % 4;
+    switch (t) {
+        case 0:
+            challenge = "RobotS";
+            break;
+        case 1:
+            challenge = "RobotC";
+            break;
+        case 2:
+            challenge = "RobotSW";
+            break;
+        case 3:
+            challenge = "all";
+            break;
+    }
+}
+
+bool PassingCard::canUse(Character* obj, Robot* robot) {
+    return (obj->getName() == "Watson" && obj->getHP() % 2 == 0);
+}
+
+void PassingCard::use(Character* obj, Robot* robot) {
+    if (canUse(obj, robot)) {
+        std::cout << obj->getName() << " used PassingCard to bypass the challenge." << std::endl;
+    } else {
+        std::cout << obj->getName() << " cannot use PassingCard at this time." << std::endl;
+    }
+}

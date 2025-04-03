@@ -1,0 +1,97 @@
+//3.5 3.6 3.7 .h
+//3.5
+class Sherlock : public MovingObject {
+    friend class TestStudyInPink;
+private:
+    string moving_rule;
+    int hp;
+    int exp;
+    Position position; // Thêm vị trí vào Sherlock
+    BaseBag bag;
+public:
+    Sherlock(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp);
+    Position getNextPosition() override;
+    void move() override;
+    string str() const override;
+    int getHP() const; // Thêm phương thức getHP
+    int getEXP() const override; // Hiện thực phương thức getEXP để trả về điểm kinh nghiệm của Sherlock
+    string getName() const;  // Hiện thực phương thức getName để trả về tên của Sherlock
+    Position getPosition() const; // Thêm phương thức getPosition
+    void setPosition(const Position &pos); // Thêm phương thức setPosition
+    void Sherlock::addItemToBag(BaseItem* item) {
+        // Gọi phương thức addItem của túi của Sherlock
+        bag.addItem(item);
+    }
+    void Sherlock::decreaseEXP(int amount) {
+        // Giảm điểm kinh nghiệm của Sherlock
+        exp -= amount;
+    }
+    void decreaseHP(int amount) {
+        // Giảm máu của Sherlock
+        hp -= amount;
+    }
+    Sherlock(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+        : MovingObject(index, init_pos, map, "Sherlock"), moving_rule(moving_rule), hp(init_hp), exp(init_exp) {
+        // Khởi tạo túi cho Sherlock
+        bag = BaseBag();
+    }
+
+};
+
+
+//3.6
+class Watson : public MovingObject {
+    friend class TestStudyInPink;
+private:
+    string moving_rule;
+    int hp;
+    int exp;
+    Position position; // Thêm vị trí vào Sherlock
+    BaseBag bag; 
+
+public:
+    Watson(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp);
+    Position getNextPosition() override;
+    void move() override;
+    string str() const override;
+    int getHP() const; // Thêm phương thức getHP
+    int getEXP() const override; // Hiện thực phương thức getEXP để trả về điểm kinh nghiệm của Watson
+    string getName() const ; // Hiện thực phương thức getName để trả về tên của Watson
+    Position getPosition() const; // Thêm phương thức getPosition
+    void setPosition(const Position &pos); // Thêm phương thức setPosition
+    void Watson::addItemToBag(BaseItem* item) {
+    // Gọi phương thức addItem của túi của Watson
+    bag.addItem(item);
+    }
+    void Watson::decreaseEXP(int amount) {
+    // Giảm điểm kinh nghiệm của Watson
+    exp -= amount;
+    }
+    Watson(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+        : MovingObject(index, init_pos, map, "Watson"), moving_rule(moving_rule), hp(init_hp), exp(init_exp) {
+        // Khởi tạo túi cho Watson
+        bag = BaseBag();
+    }
+};
+
+//3.7
+class Criminal : public MovingObject {
+    friend class TestStudyInPink;
+private:
+    Sherlock *sherlock;
+    Watson *watson;
+    BaseBag bag;
+    bool caught; // Biến đánh dấu Criminal đã bị bắt hay chưa
+public:
+    Criminal(int index, const Position &init_pos, Map *map, Sherlock *sherlock, Watson *watson);
+    Position getNextPosition() override;
+    void move() override;
+    string str() const override;
+    string getName() const; // Hiện thực phương thức getName để trả về tên của Criminal
+    void setCaught(bool isCaught) {
+        // Đặt trạng thái bắt của Criminal
+        caught = isCaught;
+    }
+    ~Criminal() override;
+    int getEXP() const override; // Hiện thực phương thức getEXP để trả về điểm kinh nghiệm
+};

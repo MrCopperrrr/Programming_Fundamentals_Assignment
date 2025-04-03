@@ -1,0 +1,107 @@
+//3.10 .h
+class Robot : public MovingObject {
+    friend class TestStudyInPink;
+protected:
+    RobotType robot_type;
+    BaseItem* item;
+    Position position;
+
+public:
+    Robot(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal);
+    virtual ~Robot();
+    virtual Position getNextPosition() = 0;
+    virtual void move();
+    virtual int getDistance(Sherlock* sherlock);
+    virtual int getDistance(Watson* watson);
+    virtual std::string str() const;
+    void setPosition(const Position& pos) {
+        position = pos;
+    }
+    Position getPosition() const {
+        return position;
+    }
+};
+
+class RobotC : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    //BaseBag bag; // Thêm túi vào RobotC
+
+public:
+    RobotC(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal);
+    ~RobotC();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotC
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotC
+        //return bag.get();
+    }
+};
+
+class RobotS : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    Sherlock* sherlock;
+    //BaseBag bag; // Thêm túi vào RobotS
+
+public:
+    RobotS(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock);
+    ~RobotS();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotS
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotS
+        //return bag.get();
+    }
+};
+
+class RobotW : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    Watson* watson;
+    //BaseBag bag; // Thêm túi vào RobotW
+
+public:
+    RobotW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Watson* watson);
+    ~RobotW();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotW
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotW
+        //return bag.get();
+    }
+};
+
+class RobotSW : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    Sherlock* sherlock;
+    Watson* watson;
+    //BaseBag bag; // Thêm túi vào RobotSW
+
+public:
+    RobotSW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock, Watson* watson);
+    ~RobotSW();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotSW
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotSW
+        //return bag.get();
+    }
+};

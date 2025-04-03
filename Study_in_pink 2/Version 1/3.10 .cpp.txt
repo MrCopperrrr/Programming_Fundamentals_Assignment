@@ -1,0 +1,95 @@
+//3.10 .cpp
+// Implementation of class Robot
+Robot::Robot(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal)
+    : MovingObject(index, init_pos, map), robot_type(robot_type), item(nullptr) {}
+
+Robot::~Robot() {
+    delete item;
+}
+
+void Robot::move() {
+    Position nextPos = getNextPosition();
+    if (nextPos != Position(-1, -1)) {
+        setPosition(nextPos);
+    }
+}
+
+int Robot::getDistance(Sherlock* sherlock) {
+    return -1; // Default implementation, overridden in derived classes
+}
+
+int Robot::getDistance(Watson* watson) {
+    return -1; // Default implementation, overridden in derived classes
+}
+
+std::string Robot::str() const {
+    std::string robotTypeStr;
+    switch (robot_type) {
+        case C:
+            robotTypeStr = "C";
+            break;
+        case S:
+            robotTypeStr = "S";
+            break;
+        case W:
+            robotTypeStr = "W";
+            break;
+        case SW:
+            robotTypeStr = "SW";
+            break;
+    }
+    return "Robot[pos=" + getPosition().str() + ";type=" + robotTypeStr + ";dist=]";
+}
+
+// Implementation of class RobotC
+RobotC::RobotC(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal) {}
+
+RobotC::~RobotC() {}
+
+Position RobotC::getNextPosition() {
+    return getPosition(); // RobotC stays in the same position as the criminal
+}
+
+// Implementation of class RobotS
+RobotS::RobotS(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal), sherlock(sherlock) {}
+
+RobotS::~RobotS() {}
+
+Position RobotS::getNextPosition() {
+    // Calculate Manhattan distance to Sherlock
+    int distToSherlock = abs(getPosition().getX() - sherlock->getPosition().getX()) + abs(getPosition().getY() - sherlock->getPosition().getY());
+    return sherlock->getPosition(); // RobotS moves towards Sherlock
+}
+
+// Implementation of class RobotW
+RobotW::RobotW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Watson* watson)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal), watson(watson) {}
+
+RobotW::~RobotW() {}
+
+Position RobotW::getNextPosition() {
+    // Calculate Manhattan distance to Watson
+    int distToWatson = abs(getPosition().getX() - watson->getPosition().getX()) + abs(getPosition().getY() - watson->getPosition().getY());
+    return watson->getPosition(); // RobotW moves towards Watson
+}
+
+// Implementation of class RobotSW
+RobotSW::RobotSW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock, Watson* watson)
+    : Robot(index, init_pos, map, robot_type, criminal), criminal(criminal), sherlock(sherlock), watson(watson) {}
+
+RobotSW::~RobotSW() {}
+
+Position RobotSW::getNextPosition() {
+    // Calculate Manhattan distances to Sherlock and Watson
+    int distToSherlock = abs(getPosition().getX() - sherlock->getPosition().getX()) + abs(getPosition().getY() - sherlock->getPosition().getY());
+    int distToWatson = abs(getPosition().getX() - watson->getPosition().getX()) + abs(getPosition().getY() - watson->getPosition().getY());
+
+    // Move towards the closer target (Sherlock or Watson)
+    if (distToSherlock < distToWatson) {
+        return sherlock->getPosition();
+    } else {
+        return watson->getPosition();
+    }
+}

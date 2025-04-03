@@ -1,0 +1,74 @@
+//3.1 3.2 3.3 .h
+class MapElement {
+    friend class TestStudyInPink;
+protected:
+    ElementType type;
+public:
+    MapElement(ElementType in_type);
+    virtual ~MapElement();
+    virtual ElementType getType() const;
+};
+
+class Path : public MapElement {
+    friend class TestStudyInPink;
+    public:
+    Path();
+};
+
+class Wall : public MapElement {
+    friend class TestStudyInPink;
+    public:
+    Wall();
+};
+
+class FakeWall : public MapElement {
+    friend class TestStudyInPink;
+    private:
+    int req_exp;
+    public:
+    FakeWall(int in_req_exp);
+    int getReqExp() const;
+};
+
+
+class Map {
+    friend class TestStudyInPink;
+private:
+    int num_rows, num_cols;
+    MapElement ***map; // Định nghĩa biến map 
+public:
+    Map(int num_rows, int num_cols, int num_walls, Position * array_walls, int num_fake_walls, Position * array_fake_walls); //: num_rows(num_rows), num_cols(num_cols);
+    ~Map();
+    bool isValid ( const Position & pos , class MovingObject * mv_obj ) const ;
+};
+
+
+class Position {
+    friend class TestStudyInPink;
+private:
+    int r, c;
+public:
+    static const Position npos;
+
+    Position(int r=0, int c=0);
+
+    Position(const string & str_pos);
+
+    int getRow() const;
+    int getCol() const;
+    void setRow(int r);
+    void setCol(int c);
+
+    string str() const;
+
+    bool isEqual(int in_r, int in_c) const;
+    bool operator!=(const Position &other) const {
+        return r != other.r || c != other.c;
+    }
+    bool operator==(const Position &other) const {
+    return r == other.r && c == other.c;
+    }
+    // Thêm phương thức getX và getY
+    int getX() const { return r; }
+    int getY() const { return c; }
+};

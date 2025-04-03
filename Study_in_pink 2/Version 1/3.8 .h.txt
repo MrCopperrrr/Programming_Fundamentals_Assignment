@@ -1,0 +1,17 @@
+//3.8 .h
+class ArrayMovingObject {
+    friend class TestStudyInPink;
+private:
+    MovingObject **arr_mv_objs;
+    int count;
+    int capacity;
+
+public:
+    ArrayMovingObject(int capacity);
+    ~ArrayMovingObject() ;
+    bool isFull() const;
+    bool add(MovingObject * mv_obj);
+    MovingObject * get(int index) const;
+    int size() const; // return current number of elements in the array
+    string str() const;
+};

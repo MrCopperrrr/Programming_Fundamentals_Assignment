@@ -1,0 +1,106 @@
+//3.12 .cpp
+// BaseBag implementation
+BaseBag::BaseBag() : itemCount(0) {}
+
+BaseBag::~BaseBag() {
+    for (int i = 0; i < itemCount; ++i) {
+        delete items[i];
+    }
+}
+
+bool BaseBag::insert(BaseItem* item) {
+    if (itemCount < 15) {
+        items[itemCount++] = item;
+        return true;
+    }
+    return false;
+}
+
+BaseItem* BaseBag::get() {
+    if (itemCount > 0) {
+        BaseItem* item = items[0];
+        for (int i = 0; i < itemCount - 1; ++i) {
+            items[i] = items[i + 1];
+        }
+        --itemCount;
+        return item;
+    }
+    return nullptr;
+}
+
+BaseItem* BaseBag::get(ItemType itemType) {
+    std::string itemTypeString;
+    switch(itemType) {
+        case ItemType::MAGIC_BOOK:
+            itemTypeString = "MagicBook";
+            break;
+        case ItemType::ENERGY_DRINK:
+            itemTypeString = "EnergyDrink";
+            break;
+        case ItemType::FIRST_AID:
+            itemTypeString = "FirstAid";
+            break;
+        case ItemType::EXCEMPTION_CARD:
+            itemTypeString = "ExcemptionCard";
+            break;
+        case ItemType::PASSING_CARD:
+            itemTypeString = "PassingCard";
+            break;
+    }
+
+    for (int i = 0; i < itemCount; ++i) {
+        if (items[i]->getItemType() == itemTypeString) {
+            BaseItem* item = items[i];
+            for (int j = i; j < itemCount - 1; ++j) {
+                items[j] = items[j + 1];
+            }
+            --itemCount;
+            return item;
+        }
+    }
+    return nullptr;
+}
+
+std::string BaseBag::str() const {
+    std::string result = "Bag[count=" + std::to_string(itemCount) + ";";
+    for (int i = 0; i < itemCount; ++i) {
+        result += items[i]->getItemType();
+        if (i < itemCount - 1) {
+            result += ",";
+        }
+    }
+    result += "]";
+    return result;
+}
+
+// Implement SherlockBag
+SherlockBag::SherlockBag() {
+    // Không cần thực hiện bất kỳ thao tác nào trong constructor
+}
+
+bool SherlockBag::giveItemsTo(WatsonBag* watsonBag) {
+    bool success = false;
+    for (int i = 0; i < itemCount; ++i) {
+        BaseItem* item = get();
+        if (item != nullptr) {
+            success = watsonBag->insert(item);
+        }
+    }
+    return success;
+}
+
+// Implement WatsonBag
+WatsonBag::WatsonBag() {
+    // Không cần thực hiện bất kỳ thao tác nào trong constructor
+}
+
+bool WatsonBag::giveItemsTo(SherlockBag* sherlockBag) {
+    bool success = false;
+    for (int i = 0; i < itemCount; ++i) {
+        BaseItem* item = get();
+        if (item != nullptr) {
+            success = sherlockBag->insert(item);
+        }
+    }
+    return success;
+}

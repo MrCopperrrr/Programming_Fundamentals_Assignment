@@ -1,0 +1,157 @@
+//3.5 3.6 3.7 .cpp
+//3.5
+
+// Constructor của Sherlock
+Sherlock::Sherlock(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+    : MovingObject(index, init_pos, map, "Sherlock"), moving_rule(moving_rule), hp((init_hp < 0) ? 0 : (init_hp > 500) ? 500 : init_hp), exp((init_exp < 0) ? 0 : (init_exp > 900) ? 900 : init_exp), bag() {
+        bag = BaseBag();
+    }
+
+
+
+// Phương thức getNextPosition của Sherlock
+Position Sherlock::getNextPosition() {
+    static size_t current_index = 0;
+    char direction = moving_rule[current_index];
+    current_index = (current_index + 1) % moving_rule.length();
+
+    int new_row = pos.getRow();
+    int new_col = pos.getCol();
+
+    // Di chuyển dựa trên hướng được quy định
+    switch (direction) {
+        case 'L':
+            new_col--;
+            break;
+        case 'R':
+            new_col++;
+            break;
+        case 'U':
+            new_row--;
+            break;
+        case 'D':
+            new_row++;
+            break;
+    }
+
+    Position next_pos(new_row, new_col);
+    return (map->isValid(next_pos, this)) ? next_pos : Position::npos;
+}
+
+// Phương thức move của Sherlock
+void Sherlock::move() {
+    Position next_pos = getNextPosition();
+    if (next_pos != Position::npos) {
+        pos = next_pos;
+    }
+}
+
+// Phương thức str của Sherlock
+string Sherlock::str() const {
+    return "Sherlock[index=" + to_string(index) + ";pos=" + pos.str() + ";moving_rule=" + moving_rule + "]";
+}
+
+
+
+//3.6
+// Constructor của Watson
+Watson::Watson(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+    : MovingObject(index, init_pos, map, "Watson"), moving_rule(moving_rule), hp((init_hp < 0) ? 0 : (init_hp > 500) ? 500 : init_hp), exp((init_exp < 0) ? 0 : (init_exp > 900) ? 900 : init_exp), bag() {
+        bag = BaseBag();
+    }
+
+
+// Phương thức getNextPosition của Watson
+Position Watson::getNextPosition() {
+    static size_t current_index = 0;
+    char direction = moving_rule[current_index];
+    current_index = (current_index + 1) % moving_rule.length();
+
+    int new_row = pos.getRow();
+    int new_col = pos.getCol();
+
+    // Di chuyển dựa trên hướng được quy định
+    switch (direction) {
+        case 'L':
+            new_col--;
+            break;
+        case 'R':
+            new_col++;
+            break;
+        case 'U':
+            new_row--;
+            break;
+        case 'D':
+            new_row++;
+            break;
+    }
+
+    Position next_pos(new_row, new_col);
+    return (map->isValid(next_pos, this)) ? next_pos : Position::npos;
+}
+
+// Phương thức move của Watson
+void Watson::move() {
+    Position next_pos = getNextPosition();
+    if (next_pos != Position::npos) {
+        pos = next_pos;
+    }
+}
+
+// Phương thức str của Watson
+string Watson::str() const {
+    return "Watson[index=" + to_string(index) + ";pos=" + pos.str() + ";moving_rule=" + moving_rule + "]";
+}
+
+
+
+//3.7
+// Constructor của Criminal
+Criminal::Criminal(int index, const Position &init_pos, Map *map, Sherlock *sherlock, Watson *watson)
+    : MovingObject(index, init_pos, map, "Criminal"), sherlock(sherlock), watson(watson) {}
+
+// Phương thức getNextPosition của Criminal
+Position Criminal::getNextPosition() {
+    Position current_pos = pos;
+    int max_distance = 0;
+    Position next_pos = Position::npos;
+
+    // Duyệt qua các hướng đi
+    int directions[4][2] = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}}; //4: 4 hướng 2: đại diện cho 2 p.tử hàng và cột
+    for (int i = 0; i < 4; ++i) {
+        int new_row = current_pos.getRow() + directions[i][0];
+        int new_col = current_pos.getCol() + directions[i][1];
+        Position candidate_pos(new_row, new_col);
+
+        // Kiểm tra vị trí mới có hợp lệ không
+        if (map->isValid(candidate_pos, this)) {
+            // Tính khoảng cách từ vị trí mới đến Sherlock và Watson
+            int distance_to_sherlock = abs(new_row - sherlock->getCurrentPosition().getRow()) +
+                                       abs(new_col - sherlock->getCurrentPosition().getCol());
+            int distance_to_watson = abs(new_row - watson->getCurrentPosition().getRow()) +
+                                     abs(new_col - watson->getCurrentPosition().getCol());
+            int total_distance = distance_to_sherlock + distance_to_watson;
+
+            // Cập nhật vị trí mới nếu tổng khoảng cách lớn nhất
+            if (total_distance > max_distance) {
+                max_distance = total_distance;
+                next_pos = candidate_pos;
+            }
+        }
+    }
+
+    return next_pos;
+}
+
+// Phương thức move của Criminal
+void Criminal::move() {
+    Position next_pos = getNextPosition();
+    if (next_pos != Position::npos) {
+        pos = next_pos;
+    }
+}
+
+// Phương thức str của Criminal
+string Criminal::str() const {
+    return "Criminal[index=" + to_string(index) + ";pos=" + pos.str() + "]";
+}

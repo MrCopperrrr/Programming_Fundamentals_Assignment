@@ -1,0 +1,156 @@
+//3.13 .cpp
+StudyPinkProgram::StudyPinkProgram(const string &config_file_path) {
+    // Khởi tạo các đối tượng từ tập tin cấu hình
+    ifstream configFile(config_file_path);
+    if (!configFile.is_open()) {
+        cerr << "Error: Unable to open configuration file" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Đọc các thông tin từ tập tin cấu hình và khởi tạo các đối tượng tương ứng
+    string line;
+    while (getline(configFile, line)) {
+        stringstream ss(line);
+        string type;
+        ss >> type;
+        if (type == "Sherlock") {
+            string name;
+            int exp, hp, pos;
+            ss >> name >> exp >> hp >> pos;
+            Position init_pos(pos); // Tạo vị trí khởi tạo từ pos
+            sherlock = new Sherlock(1, "moving_rule", init_pos, nullptr, hp, exp); // Thay nullptr bằng con trỏ thực sự tới Map nếu có
+        } else if (type == "Watson") {
+            string name;
+            int exp, hp, pos;
+            ss >> name >> exp >> hp >> pos;
+            Position init_pos(pos); // Tạo vị trí khởi tạo từ pos
+            watson = new Watson(1, "moving_rule", init_pos, nullptr, hp, exp); // Thay nullptr bằng con trỏ thực sự tới Map nếu có
+        } else if (type == "Criminal") {
+            string name;
+            int exp, hp, pos;
+            ss >> name >> exp >> hp >> pos;
+            Position init_pos(pos); // Tạo vị trí khởi tạo từ pos
+            criminal = new Criminal(1, init_pos, nullptr, nullptr, nullptr); // Thay nullptr bằng con trỏ thực sự tới Sherlock và Watson nếu có
+        } else if (type == "Map") {
+            int num_rows, num_cols;
+            ss >> num_rows >> num_cols;
+            map = new Map(num_rows, num_cols);
+        }
+    }
+
+    // Khởi tạo mảng các đối tượng di chuyển và thêm vào các đối tượng
+    arr_mv_objs = new ArrayMovingObject(10);
+    arr_mv_objs->add(criminal);
+    arr_mv_objs->add(sherlock);
+    arr_mv_objs->add(watson);
+}
+
+bool StudyPinkProgram::isStop() const {
+    // Kiểm tra các điều kiện dừng
+    if (sherlock->getHP() == 0 || watson->getHP() == 0 ||
+        sherlock->getCurrentPosition() == criminal->getCurrentPosition() ||
+        watson->getCurrentPosition() == criminal->getCurrentPosition()) {
+        return true;
+    }
+    return false;
+}
+
+void StudyPinkProgram::run(bool verbose) {
+    // Thực hiện vòng lặp chạy các bước
+    for (int istep = 0; istep < config->num_steps; ++istep) {
+        // Chạy từng đối tượng di chuyển trong mảng
+        for (int i = 0; i < arr_mv_objs->size(); ++i) {
+            // Di chuyển đối tượng
+            arr_mv_objs->get(i)->move();
+
+            // Kiểm tra điều kiện dừng
+            if (isStop()) {
+                printStep(istep);
+                break;
+            }
+
+            // In ra thông tin nếu verbose được bật
+            if (verbose) {
+                printStep(istep);
+            }
+
+            // Kiểm tra và xử lý va chạm giữa các đối tượng
+            for (int j = 0; j < arr_mv_objs->size(); ++j) {
+                MovingObject* obj1 = arr_mv_objs->get(i);
+                MovingObject* obj2 = arr_mv_objs->get(j);
+                if (obj1 != obj2 && obj1->getCurrentPosition() == obj2->getCurrentPosition()) {
+                    // Xử lý va chạm giữa obj1 và obj2
+                    if (Sherlock* sh = dynamic_cast<Sherlock*>(obj1)) {
+                        if (RobotS* robotS = dynamic_cast<RobotS*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotS
+                            if (sh->getEXP() > 400) {
+                                // Sherlock giải quyết được bài toán và nhận vật phẩm từ RobotS
+                                BaseItem* item = robotS->getItem();
+                                if (item != nullptr) {
+                                    sh->addItemToBag(item);
+                                }
+                                } else {
+                                    // Sherlock không giải quyết được bài toán, mất 10% EXP
+                                    sh->decreaseEXP(0.1);
+                                }
+                        } else if (RobotW* robotW = dynamic_cast<RobotW*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotW
+                            // Sherlock vượt qua và nhận vật phẩm từ RobotW
+                            BaseItem* item = robotW->getItem();
+                            if (item != nullptr) {
+                                sh->addItemToBag(item);
+                            }
+                        } else if (RobotSW* robotSW = dynamic_cast<RobotSW*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotSW
+                            if (sh->getEXP() > 300 && sh->getHP() > 335) {
+                                // Sherlock chiến thắng RobotSW và nhận vật phẩm từ RobotSW
+                                BaseItem* item = robotSW->getItem();
+                                if (item != nullptr) {
+                                    sh->addItemToBag(item);
+                                }
+                                } else {
+                                    // Sherlock không thắng RobotSW, mất 15% HP và 15% EXP
+                                    sh->decreaseHP(0.15);
+                                    sh->decreaseEXP(0.15);
+                                }
+                        } else if (RobotC* robotC = dynamic_cast<RobotC*>(obj2)) {
+                            // Xử lý khi Sherlock gặp RobotC
+                            if (sh->getEXP() > 500) {
+                                // Sherlock chiến thắng RobotC và bắt được tên tội phạm
+                                criminal->setCaught(true);
+                            } else {
+                                // Sherlock không thắng RobotC, tiêu diệt RobotC và nhận vật phẩm từ RobotC
+                                BaseItem* item = robotC->getItem();
+                                if (item != nullptr) {
+                                    sh->addItemToBag(item);
+                                }
+                            }
+                        } else if (FakeWall* fakeWall = dynamic_cast<FakeWall*>(obj2)) {
+                            // Xử lý khi Sherlock gặp FakeWall
+                        }
+                    } else if (Watson* w = dynamic_cast<Watson*>(obj1)) {
+                        if (RobotS* robotS = dynamic_cast<RobotS*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotS
+                            // TODO: Xử lý logic khi Watson gặp RobotS
+                        } else if (RobotW* robotW = dynamic_cast<RobotW*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotW
+                            // TODO: Xử lý logic khi Watson gặp RobotW
+                        } else if (RobotSW* robotSW = dynamic_cast<RobotSW*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotSW
+                            // TODO: Xử lý logic khi Watson gặp RobotSW
+                        } else if (RobotC* robotC = dynamic_cast<RobotC*>(obj2)) {
+                            // Xử lý khi Watson gặp RobotC
+                            // TODO: Xử lý logic khi Watson gặp RobotC
+                        } else if (FakeWall* fakeWall = dynamic_cast<FakeWall*>(obj2)) {
+                            // Xử lý khi Watson gặp FakeWall
+                            // TODO: Xử lý logic khi Watson gặp FakeWall
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // In kết quả cuối cùng
+    printResult();
+}

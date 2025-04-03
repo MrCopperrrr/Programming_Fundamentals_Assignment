@@ -1,0 +1,39 @@
+//3.13 .h
+class StudyPinkProgram {
+    friend class TestStudyInPink;
+private:
+    Configuration* config;
+    Sherlock* sherlock;
+    Watson* watson;
+    Criminal* criminal;
+    Map* map;
+    ArrayMovingObject* arr_mv_objs;
+
+
+public:
+    StudyPinkProgram(const string & config_file_path);
+
+    bool isStop() const;
+
+    void printResult() const {
+        if (sherlock->getCurrentPosition() == criminal->getCurrentPosition()) {
+            cout << "Sherlock caught the criminal" << endl;
+        }
+        else if (watson->getCurrentPosition() == criminal->getCurrentPosition()) {
+        cout << "Watson caught the criminal" << endl;
+        }
+        else {
+            cout << "The criminal escaped" << endl;
+        }
+    }
+
+    void printStep(int si) const {
+        cout << "Step: " << setw(4) << setfill('0') << si
+            << "--"
+            << sherlock->str() << "--|--" << watson->str() << "--|--" << criminal->str() << endl;
+    }
+
+    void run(bool verbose);
+
+    ~StudyPinkProgram();
+};

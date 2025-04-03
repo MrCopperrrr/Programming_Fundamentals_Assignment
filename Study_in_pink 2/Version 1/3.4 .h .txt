@@ -1,0 +1,19 @@
+//3.4 .h
+class MovingObject {
+    friend class TestStudyInPink;
+protected:
+    int index;
+    Position pos;
+    Map * map;
+    string name;
+
+public:
+    MovingObject(int index, const Position pos, Map * map, const string & name="");
+    virtual ~MovingObject();
+    virtual Position getNextPosition() = 0;
+    Position getCurrentPosition() const;
+    virtual void move() = 0;
+    virtual string str() const = 0;
+    string getName() const { return name; } // Thêm phương thức getName để trả về tên của đối tượng
+    virtual int getEXP() const = 0; // Thêm phương thức ảo thuần tố getEXP để trả về điểm kinh nghiệm của đối tượng
+};

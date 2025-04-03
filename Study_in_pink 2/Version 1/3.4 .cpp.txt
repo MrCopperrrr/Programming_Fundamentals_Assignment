@@ -1,0 +1,35 @@
+//3.4 .cpp
+// Tạo biến static npos trong class Position
+const Position Position::npos = Position(-1, -1);
+
+// Hiện thực constructor của MovingObject
+MovingObject::MovingObject(int index, const Position pos, Map *map, const string &name)
+    : index(index), pos(pos), map(map), name(name) {}
+
+// Hủy ảo (virtual destructor)
+MovingObject::~MovingObject() {}
+
+// Phương thức getCurrentPosition trả về vị trí hiện tại của đối tượng di chuyển
+Position MovingObject::getCurrentPosition() const {
+    return pos;
+}
+// Hiện thực phương thức isValid trong class Map
+bool Map::isValid(const Position &pos, MovingObject *mv_obj) const {
+    // Kiểm tra xem vị trí pos có nằm trong bản đồ không
+    if (pos.getRow() < 0 || pos.getRow() >= num_rows || pos.getCol() < 0 || pos.getCol() >= num_cols) {
+        return false;
+    }
+
+    // Kiểm tra xem vị trí pos có phù hợp với đối tượng di chuyển không
+    // Ví dụ: Sherlock có thể di chuyển trên FakeWall, nhưng Watson cần kiểm tra EXP
+    MapElement *element = map[pos.getRow()][pos.getCol()];
+    if (element->getType() == FAKE_WALL && mv_obj->getName() == "Watson") {
+        // Kiểm tra EXP của Watson với yêu cầu EXP của FakeWall
+        FakeWall *fake_wall = dynamic_cast<FakeWall *>(element);
+        if (fake_wall && mv_obj->getEXP() < fake_wall->getReqExp()) {
+            return false;
+        }
+    }
+
+    return true;
+}

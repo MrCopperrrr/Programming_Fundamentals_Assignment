@@ -1,0 +1,127 @@
+//3.9 .cpp
+Configuration::Configuration(const string &filepath) {
+    ifstream file(filepath);
+    if (!file.is_open()) {
+        cerr << "Error opening configuration file: " << filepath << endl;
+        return;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        string key, value;
+        getline(iss, key, '=');
+        getline(iss, value);
+        
+        if (key == "MAP_NUM_ROWS") {
+            map_num_rows = stoi(value);
+        } else if (key == "MAP_NUM_COLS") {
+            map_num_cols = stoi(value);
+        } else if (key == "MAX_NUM_MOVING_OBJECTS") {
+            max_num_moving_objects = stoi(value);
+        } else if (key == "ARRAY_WALLS") {
+            value = value.substr(1, value.size() - 2); // Remove '[' and ']'
+            istringstream ss(value);
+            string pos_str;
+            num_walls = 0;
+            while (getline(ss, pos_str, ';')) {
+                num_walls++;
+            }
+            arr_walls = new Position[num_walls];
+            ss.clear();
+            ss.seekg(0);
+            int idx = 0;
+            while (getline(ss, pos_str, ';')) {
+                int row, col;
+                sscanf(pos_str.c_str(), "(%d,%d)", &row, &col);
+                arr_walls[idx++] = Position(row, col);
+            }
+        } else if (key == "ARRAY_FAKE_WALLS") {
+            // Parse array fake walls
+            // Example: ARRAY_FAKE_WALLS=[(4,5)]
+            value = value.substr(1, value.size() - 2); // Remove '[' and ']'
+            istringstream ss(value);
+            string pos_str;
+            num_fake_walls = 0;
+            while (getline(ss, pos_str, ';')) {
+                num_fake_walls++;
+            }
+            arr_fake_walls = new Position[num_fake_walls];
+            ss.clear();
+            ss.seekg(0);
+            int idx = 0;
+            while (getline(ss, pos_str, ';')) {
+                int row, col;
+                sscanf(pos_str.c_str(), "(%d,%d)", &row, &col);
+                arr_fake_walls[idx++] = Position(row, col);
+            }
+        } else if (key == "SHERLOCK_MOVING_RULE") {
+            sherlock_moving_rule = value;
+        } else if (key == "SHERLOCK_INIT_POS") {
+            int row, col;
+            sscanf(value.c_str(), "(%d,%d)", &row, &col);
+            sherlock_init_pos = Position(row, col);
+        } else if (key == "SHERLOCK_INIT_HP") {
+            sherlock_init_hp = stoi(value);
+        } else if (key == "SHERLOCK_INIT_EXP") {
+            sherlock_init_exp = stoi(value);
+        } else if (key == "WATSON_MOVING_RULE") {
+            watson_moving_rule = value;
+        } else if (key == "WATSON_INIT_POS") {
+            int row, col;
+            sscanf(value.c_str(), "(%d,%d)", &row, &col);
+            watson_init_pos = Position(row, col);
+        } else if (key == "WATSON_INIT_HP") {
+            watson_init_hp = stoi(value);
+        } else if (key == "WATSON_INIT_EXP") {
+            watson_init_exp = stoi(value);
+        } else if (key == "CRIMINAL_INIT_POS") {
+            int row, col;
+            sscanf(value.c_str(), "(%d,%d)", &row, &col);
+            criminal_init_pos = Position(row, col);
+        } else if (key == "NUM_STEPS") {
+            num_steps = stoi(value);
+        }
+    }
+
+    file.close();
+}
+
+Configuration::~Configuration() {
+    delete[] arr_walls;
+    delete[] arr_fake_walls;
+}
+
+string Configuration::str() const {
+    stringstream ss;
+    ss << "Configuration[" << endl;
+    ss << "MAP_NUM_ROWS=" << map_num_rows << endl;
+    ss << "MAP_NUM_COLS=" << map_num_cols << endl;
+    ss << "MAX_NUM_MOVING_OBJECTS=" << max_num_moving_objects << endl;
+    ss << "NUM_WALLS=" << num_walls << endl;
+    ss << "ARRAY_WALLS=[";
+    for (int i = 0; i < num_walls; ++i) {
+        if (i > 0) ss << ";";
+        ss << "(" << arr_walls[i].getRow() << "," << arr_walls[i].getCol() << ")";
+    }
+    ss << "]" << endl;
+    ss << "NUM_FAKE_WALLS=" << num_fake_walls << endl;
+    ss << "ARRAY_FAKE_WALLS=[";
+    for (int i = 0; i < num_fake_walls; ++i) {
+        if (i > 0) ss << ";";
+        ss << "(" << arr_fake_walls[i].getRow() << "," << arr_fake_walls[i].getCol() << ")";
+    }
+    ss << "]" << endl;
+    ss << "SHERLOCK_MOVING_RULE=" << sherlock_moving_rule << endl;
+    ss << "SHERLOCK_INIT_POS=(" << sherlock_init_pos.getRow() << "," << sherlock_init_pos.getCol() << ")" << endl;
+    ss << "SHERLOCK_INIT_HP=" << sherlock_init_hp << endl;
+    ss << "SHERLOCK_INIT_EXP=" << sherlock_init_exp << endl;
+    ss << "WATSON_MOVING_RULE=" << watson_moving_rule << endl;
+    ss << "WATSON_INIT_POS=(" << watson_init_pos.getRow() << "," << watson_init_pos.getCol() << ")" << endl;
+    ss << "WATSON_INIT_HP=" << watson_init_hp << endl;
+    ss << "WATSON_INIT_EXP=" << watson_init_exp << endl;
+    ss << "CRIMINAL_INIT_POS=(" << criminal_init_pos.getRow() << "," << criminal_init_pos.getCol() << ")" << endl;
+    ss << "NUM_STEPS=" << num_steps << endl;
+    ss << "]";
+    return ss.str();
+}

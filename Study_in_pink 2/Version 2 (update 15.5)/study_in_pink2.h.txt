@@ -1,0 +1,614 @@
+/*
+* Ho Chi Minh City University of Technology
+* Faculty of Computer Science and Engineering
+* Initial code for Assignment 1
+* Programming Fundamentals Spring 2023
+* Author: Vu Van Tien
+* Date: 02.02.2023
+*/
+
+//The library here is concretely set, students are not allowed to include any other libraries.
+#ifndef _H_STUDY_IN_PINK_2_H_
+#define _H_STUDY_IN_PINK_2_H_
+
+#include "main.h"
+
+////////////////////////////////////////////////////////////////////////
+/// STUDENT'S ANSWER BEGINS HERE
+/// Complete the following functions
+/// DO NOT modify any parameters in the functions.
+////////////////////////////////////////////////////////////////////////
+
+// Forward declaration
+class MapElement;
+ class Path;
+ class Wall;
+ class FakeWall;
+
+ class Map;
+ class Position;
+
+ class BaseBag;
+ class MovingObject;
+ 
+ class Sherlock;
+ class Watson;
+ class Criminal;
+ 
+ class ArrayMovingObject;
+ class Configuration;
+
+ class Robot;
+ class RobotC;
+ class RobotS;
+ class RobotW;
+ class RobotSW;
+ 
+ class Character;
+
+ class BaseItem;
+ class MagicBook;
+ class EnergyDrink;
+ class FirstAid;
+ class ExcemptionCard;
+
+ 
+ class SherlockBag;
+ class WatsonBag;
+
+ 
+ class StudyPinkProgram;
+
+ class TestStudyInPink;
+
+enum ItemType { MAGIC_BOOK, ENERGY_DRINK, FIRST_AID, EXCEMPTION_CARD, PASSING_CARD };
+enum ElementType { PATH, WALL, FAKE_WALL };
+enum RobotType { C=0, S, W, SW };
+
+//3.1 3.2 3.3
+class MapElement {
+    friend class TestStudyInPink;
+protected:
+    ElementType type;
+public:
+    MapElement(ElementType in_type);
+    virtual ~MapElement();
+    virtual ElementType getType() const;
+};
+
+class Path : public MapElement {
+    friend class TestStudyInPink;
+    public:
+    Path();
+};
+
+class Wall : public MapElement {
+    friend class TestStudyInPink;
+    public:
+    Wall();
+};
+
+class FakeWall : public MapElement {
+    friend class TestStudyInPink;
+    private:
+    int req_exp;
+    public:
+    FakeWall(int in_req_exp);
+    int getReqExp() const;
+};
+
+
+class Map {
+    friend class TestStudyInPink;
+private:
+    int num_rows, num_cols;
+    MapElement ***map; // Định nghĩa biến map 
+public:
+    Map(int num_rows, int num_cols, int num_walls =0, Position * array_walls =nullptr, int num_fake_walls =0, Position * array_fake_walls =nullptr); //: num_rows(num_rows), num_cols(num_cols);
+    ~Map();
+    bool isValid ( const Position & pos , class MovingObject * mv_obj ) const ;
+};
+
+
+class Position {
+    friend class TestStudyInPink;
+private:
+    int r, c;
+public:
+    static const Position npos;
+
+    Position(int r=0, int c=0);
+
+    Position(const string & str_pos);
+
+    int getRow() const;
+    int getCol() const;
+    void setRow(int r);
+    void setCol(int c);
+
+    string str() const;
+
+    bool isEqual(int in_r, int in_c) const;
+    
+    bool operator!=(const Position &other) const {
+        return r != other.r || c != other.c;
+    }
+    bool operator==(const Position &other) const {
+    return r == other.r && c == other.c;
+    }
+    // Thêm phương thức getX và getY
+    int getX() const { return r; }
+    int getY() const { return c; }
+};
+
+//3.4
+class MovingObject {
+    friend class TestStudyInPink;
+protected:
+    int index;
+    Position pos;
+    Map * map;
+    string name;
+
+public:
+    MovingObject(int index, const Position pos, Map * map, const string & name="");
+    virtual ~MovingObject();
+    virtual Position getNextPosition() = 0;
+    Position getCurrentPosition() const;
+    virtual void move() = 0;
+    virtual string str() const = 0;
+    string getName() const { return name; } // Thêm phương thức getName để trả về tên của đối tượng
+    virtual int getEXP() const = 0; // Thêm phương thức ảo thuần tố getEXP để trả về điểm kinh nghiệm của đối tượng
+};
+
+//3.5
+class Sherlock : public MovingObject {
+    friend class TestStudyInPink;
+private:
+    string moving_rule;
+    int hp;
+    int exp;
+    Position position; // Thêm vị trí vào Sherlock
+    //BaseBag bag;
+public:
+    Sherlock(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp);
+    Position getNextPosition() override;
+    void move() override;
+    string str() const override;
+    int getHP() const; // Thêm phương thức getHP
+    int getEXP() const override; // Hiện thực phương thức getEXP để trả về điểm kinh nghiệm của Sherlock
+    string getName() const;  // Hiện thực phương thức getName để trả về tên của Sherlock
+    Position getPosition() const; // Thêm phương thức getPosition
+    void setPosition(const Position &pos); // Thêm phương thức setPosition
+    void addItemToBag(BaseItem* item) 
+    {
+        // Gọi phương thức addItem của túi của Sherlock
+        //bag.addItem(item);
+    }
+    void decreaseEXP(int amount) {
+        // Giảm điểm kinh nghiệm của Sherlock
+        exp -= amount;
+    }
+    void decreaseHP(int amount) {
+        // Giảm máu của Sherlock
+        hp -= amount;
+    }
+    Sherlock(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+        : MovingObject(index, init_pos, map, "Sherlock"), moving_rule(moving_rule), hp(init_hp), exp(init_exp) {
+        // Khởi tạo túi cho Sherlock
+        //bag = BaseBag();
+    }
+
+};
+
+
+//3.6
+class Watson : public MovingObject {
+    friend class TestStudyInPink;
+private:
+    string moving_rule;
+    int hp;
+    int exp;
+    Position position; // Thêm vị trí vào Sherlock
+    //BaseBag bag; 
+
+public:
+    Watson(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp);
+    Position getNextPosition() override;
+    void move() override;
+    string str() const override;
+    int getHP() const; // Thêm phương thức getHP
+    int getEXP() const override; // Hiện thực phương thức getEXP để trả về điểm kinh nghiệm của Watson
+    string getName() const ; // Hiện thực phương thức getName để trả về tên của Watson
+    Position getPosition() const; // Thêm phương thức getPosition
+    void setPosition(const Position &pos); // Thêm phương thức setPosition
+    void addItemToBag(BaseItem* item) {
+    // Gọi phương thức addItem của túi của Watson
+    //bag.addItem(item);
+    }
+    void decreaseEXP(int amount) {
+    // Giảm điểm kinh nghiệm của Watson
+    exp -= amount;
+    }
+    Watson(int index, const string &moving_rule, const Position &init_pos, Map *map, int init_hp, int init_exp)
+        : MovingObject(index, init_pos, map, "Watson"), moving_rule(moving_rule), hp(init_hp), exp(init_exp) {
+        // Khởi tạo túi cho Watson
+        //bag = BaseBag();
+    }
+};
+
+//3.7
+class Criminal : public MovingObject {
+    friend class TestStudyInPink;
+private:
+    Sherlock *sherlock;
+    Watson *watson;
+    bool caught; // Biến đánh dấu Criminal đã bị bắt hay chưa
+public:
+    Criminal(int index, const Position &init_pos, Map *map, Sherlock *sherlock, Watson *watson);
+    Position getNextPosition() override;
+    void move() override;
+    string str() const override;
+    string getName() const; // Hiện thực phương thức getName để trả về tên của Criminal
+    void setCaught(bool isCaught) {
+        // Đặt trạng thái bắt của Criminal
+        caught = isCaught;
+    }
+    ~Criminal() override;
+    int getEXP() const override; // Hiện thực phương thức getEXP để trả về điểm kinh nghiệm
+};
+
+//3.8
+class ArrayMovingObject {
+    friend class TestStudyInPink;
+private:
+    MovingObject **arr_mv_objs;
+    int count;
+    int capacity;
+
+public:
+    ArrayMovingObject(int capacity);
+    ~ArrayMovingObject() ;
+    bool isFull() const;
+    bool add(MovingObject * mv_obj);
+    MovingObject * get(int index) const;
+    int size() const; // return current number of elements in the array
+    string str() const;
+};
+
+//3.9
+class Configuration {
+    friend class TestStudyInPink;
+    friend class StudyPinkProgram;
+
+private:
+    int map_num_rows, map_num_cols;
+    int max_num_moving_objects;
+    int num_walls;
+    Position *arr_walls;
+    int num_fake_walls;
+    Position *arr_fake_walls;
+    string sherlock_moving_rule;
+    Position sherlock_init_pos;
+    int sherlock_init_hp;
+    int sherlock_init_exp;
+    string watson_moving_rule;
+    Position watson_init_pos;
+    int watson_init_hp;
+    int watson_init_exp;
+    Position criminal_init_pos;
+    int num_steps;
+
+public:
+    Configuration(const string & filepath);
+    ~Configuration();
+    string str() const;
+};
+
+//3.10
+class Robot : public MovingObject {
+    friend class TestStudyInPink;
+protected:
+    RobotType robot_type;
+    BaseItem* item;
+    Position position;
+
+public:
+    Robot(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal);
+    virtual ~Robot();
+    virtual Position getNextPosition() = 0;
+    virtual void move();
+    virtual int getDistance(Sherlock* sherlock);
+    virtual int getDistance(Watson* watson);
+    virtual std::string str() const;
+    void setPosition(const Position& pos) {
+        position = pos;
+    }
+    Position getPosition() const {
+        return position;
+    }
+};
+
+class RobotC : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    //BaseBag bag; // Thêm túi vào RobotC
+
+public:
+    RobotC(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal);
+    ~RobotC();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotC
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotC
+        //return bag.get();
+    }
+};
+
+class RobotS : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    Sherlock* sherlock;
+    //BaseBag bag; // Thêm túi vào RobotS
+
+public:
+    RobotS(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock);
+    ~RobotS();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotS
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotS
+        //return bag.get();
+    }
+};
+
+class RobotW : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    Watson* watson;
+    //BaseBag bag; // Thêm túi vào RobotW
+
+public:
+    RobotW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Watson* watson);
+    ~RobotW();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotW
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotW
+        //return bag.get();
+    }
+};
+
+class RobotSW : public Robot {
+    friend class TestStudyInPink;
+private:
+    Criminal* criminal;
+    Sherlock* sherlock;
+    Watson* watson;
+    //BaseBag bag; // Thêm túi vào RobotSW
+
+public:
+    RobotSW(int index, const Position& init_pos, Map* map, RobotType robot_type, Criminal* criminal, Sherlock* sherlock, Watson* watson);
+    ~RobotSW();
+    Position getNextPosition();
+    void addItemToBag(BaseItem* item) {
+        // Thêm vật phẩm vào túi của RobotSW
+        //bag.addItem(item);
+    }
+    BaseItem* getItem() {
+        // Trả về vật phẩm từ túi của RobotSW
+        //return bag.get();
+    }
+};
+
+
+
+//3.11
+class Character {
+    friend class TestStudyInPink;
+public:
+    Character(const std::string& name, int hp, int exp);
+    virtual ~Character();
+
+    void setHP(int hp);
+    int getHP() const;
+
+    void setEXP(int exp);
+    int getEXP() const;
+
+    void setName(const std::string& name);
+    std::string getName() const;
+
+    virtual bool canUseItem(BaseItem* item, Robot* robot) = 0;
+    virtual void useItem(BaseItem* item, Robot* robot) = 0;
+
+    virtual void encounter(MovingObject* obj) = 0;
+
+protected:
+    std::string name;
+    int hp;
+    int exp;
+};
+
+Character::Character(const std::string& name, int hp, int exp)
+    : name(name), hp(hp), exp(exp) {}
+
+Character::~Character() {}
+
+void Character::setHP(int hp) {
+    this->hp = hp;
+}
+
+int Character::getHP() const {
+    return hp;
+}
+
+void Character::setEXP(int exp) {
+    this->exp = exp;
+}
+
+int Character::getEXP() const {
+    return exp;
+}
+
+void Character::setName(const std::string& name) {
+    this->name = name;
+}
+
+std::string Character::getName() const {
+    return name;
+}
+
+
+class BaseItem {
+    friend class TestStudyInPink;
+public:
+    BaseItem();
+    virtual ~BaseItem();
+    virtual std::string getItemType() const = 0; // Thêm phương thức để trả về loại vật phẩm
+    virtual bool canUse(Character* obj, Robot* robot) = 0;
+    virtual void use(Character* obj, Robot* robot) = 0;
+};
+
+class MagicBook : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "MagicBook"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class EnergyDrink : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "EnergyDrink"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class FirstAid : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "FirstAid"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class ExcemptionCard : public BaseItem {
+    friend class TestStudyInPink;
+public:
+    std::string getItemType() const override { return "ExcemptionCard"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+};
+
+class PassingCard : public BaseItem {
+    friend class TestStudyInPink;
+private:
+    std::string challenge;
+
+public:
+    PassingCard(int i, int j);
+    std::string getItemType() const override { return "PassingCard"; } // Xác định loại vật phẩm
+    bool canUse(Character* obj, Robot* robot) override;
+    void use(Character* obj, Robot* robot) override;
+}; 
+
+
+//3.12
+class BaseBag {
+    friend class TestStudyInPink;
+protected:
+    static const int MAX_ITEMS = 15; // Định nghĩa MAX_ITEMS là một hằng số
+    BaseItem* items[MAX_ITEMS]; // Assume the maximum capacity of the bag is 15
+    int itemCount;
+public:
+    BaseBag();
+    virtual ~BaseBag();
+    virtual bool insert(BaseItem* item);
+    virtual BaseItem* get();
+    virtual BaseItem* get(ItemType itemType);
+    virtual std::string str() const;
+    bool addItem(BaseItem* item) {
+        // Kiểm tra xem túi đã đầy chưa
+        if (itemCount < MAX_ITEMS) {
+            items[itemCount] = item; // Thêm phần tử vào mảng
+            ++itemCount; // Tăng số lượng phần tử trong túi
+            return true; // Trả về true nếu thêm thành công
+        }
+        return false; // Trả về false nếu túi đã đầy
+    }
+};
+
+class SherlockBag : public BaseBag {
+    friend class TestStudyInPink;
+public:
+    SherlockBag(); // Không cần thêm tham số vào constructor
+    bool giveItemsTo(WatsonBag* watsonBag);
+};
+
+class WatsonBag : public BaseBag {
+    friend class TestStudyInPink;
+public:
+    WatsonBag(); // Không cần thêm tham số vào constructor
+    bool giveItemsTo(SherlockBag* sherlockBag);
+};
+
+
+
+//3.13
+class StudyPinkProgram {
+    friend class TestStudyInPink;
+private:
+    Configuration* config;
+    Sherlock* sherlock;
+    Watson* watson;
+    Criminal* criminal;
+    Map* map;
+    ArrayMovingObject* arr_mv_objs;
+
+
+public:
+    StudyPinkProgram(const string & config_file_path);
+
+    bool isStop() const;
+
+    void printResult() const {
+        if (sherlock->getCurrentPosition() == criminal->getCurrentPosition()) {
+            cout << "Sherlock caught the criminal" << endl;
+        }
+        else if (watson->getCurrentPosition() == criminal->getCurrentPosition()) {
+        cout << "Watson caught the criminal" << endl;
+        }
+        else {
+            cout << "The criminal escaped" << endl;
+        }
+    }
+
+    void printStep(int si) const {
+        cout << "Step: " << setw(4) << setfill('0') << si
+            << "--"
+            << sherlock->str() << "--|--" << watson->str() << "--|--" << criminal->str() << endl;
+    }
+
+    void run(bool verbose);
+
+    ~StudyPinkProgram();
+};
+
+////////////////////////////////////////////////
+/// END OF STUDENT'S ANSWER
+////////////////////////////////////////////////
+#endif /* _H_STUDY_IN_PINK_2_H_ */

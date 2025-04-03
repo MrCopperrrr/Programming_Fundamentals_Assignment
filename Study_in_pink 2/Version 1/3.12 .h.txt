@@ -1,0 +1,38 @@
+//3.12 .h
+class BaseBag {
+    friend class TestStudyInPink;
+protected:
+    static const int MAX_ITEMS = 15; // Định nghĩa MAX_ITEMS là một hằng số
+    BaseItem* items[MAX_ITEMS]; // Assume the maximum capacity of the bag is 15
+    int itemCount;
+public:
+    BaseBag();
+    virtual ~BaseBag();
+    virtual bool insert(BaseItem* item);
+    virtual BaseItem* get();
+    virtual BaseItem* get(ItemType itemType);
+    virtual std::string str() const;
+    bool addItem(BaseItem* item) {
+        // Kiểm tra xem túi đã đầy chưa
+        if (itemCount < MAX_ITEMS) {
+            items[itemCount] = item; // Thêm phần tử vào mảng
+            ++itemCount; // Tăng số lượng phần tử trong túi
+            return true; // Trả về true nếu thêm thành công
+        }
+        return false; // Trả về false nếu túi đã đầy
+    }
+};
+
+class SherlockBag : public BaseBag {
+    friend class TestStudyInPink;
+public:
+    SherlockBag(); // Không cần thêm tham số vào constructor
+    bool giveItemsTo(WatsonBag* watsonBag);
+};
+
+class WatsonBag : public BaseBag {
+    friend class TestStudyInPink;
+public:
+    WatsonBag(); // Không cần thêm tham số vào constructor
+    bool giveItemsTo(SherlockBag* sherlockBag);
+};

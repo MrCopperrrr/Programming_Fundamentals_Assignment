@@ -1,0 +1,28 @@
+//3.9 .h
+class Configuration {
+    friend class TestStudyInPink;
+    friend class StudyPinkProgram;
+
+private:
+    int map_num_rows, map_num_cols;
+    int max_num_moving_objects;
+    int num_walls;
+    Position *arr_walls;
+    int num_fake_walls;
+    Position *arr_fake_walls;
+    string sherlock_moving_rule;
+    Position sherlock_init_pos;
+    int sherlock_init_hp;
+    int sherlock_init_exp;
+    string watson_moving_rule;
+    Position watson_init_pos;
+    int watson_init_hp;
+    int watson_init_exp;
+    Position criminal_init_pos;
+    int num_steps;
+
+public:
+    Configuration(const string & filepath);
+    ~Configuration();
+    string str() const;
+};
