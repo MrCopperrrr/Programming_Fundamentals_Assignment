@@ -1,0 +1,18 @@
+num_pwds = 1
+votien10 
+num_pwds = 3
+votien10 votien10 votien
+num_pwds = 4
+votien10 votien votien10 votien
+num_pwds = 5
+votienXX votien10 votien votien10 votien
+num_pwds = 6
+votienXX votien10 votien votien10 votien votienXX
+num_pwds = 7
+votienXX votien10 votien votien10 votien votienXX votien
+num_pwds = 8
+votienXX votien10 votien votien10 votien votienXX votien votien10
+num_pwds = 10
+votienXX votien10 votien votien10 votien votienXX votien votienEEE votienEEE votienEEE
+num_pwds = 11
+votienXX votien10 votien votien10 votien votienXX votien votienEEE votienEEE votienEEE votien10

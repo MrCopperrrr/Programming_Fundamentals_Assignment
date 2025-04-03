@@ -1,0 +1,9 @@
+result line 1 : 0
+result line 3 : 0
+result line 5 : 0
+result line 7 : 1
+result line 9 : 0
+result line 11 : 2
+result line 13 : 1
+result line 15 : 7
+result line 17 : 7

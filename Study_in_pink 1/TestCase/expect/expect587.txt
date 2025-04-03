@@ -1,0 +1,200 @@
+email=@, Password=H$
+result : -1
+email=f$b@cgb, Password=Af$bcA$b@B$#
+result : -301
+email=11bh@e1a1, Password=11bhEH!!#F
+result : -300
+email=bdge@dbb[, Password=cHHbdgebdgebdge
+result : -303
+email=@, Password=caBEc[
+result : -1
+email=1@c, Password=@11@1!1B@
+result : -301
+email=ee@11, Password=!ee@!ee!@
+result : -301
+email=@, Password=BCbHEF
+result : -1
+email=hba[@ghec, Password=EGhba[hba[EBCG![
+result : -302
+email=ecf@[$#, Password=!$ecf!ecfE
+result : -302
+email=@, Password=bcbBa#HEa
+result : -300
+email=ce@b$, Password=ceHG!CceB
+result : -300
+email=h@c, Password=@EcFhFB
+result : -1
+email=f1cb@b1gb, Password=Bf1cbGf1cbf1cb$!b
+result : -301
+email=1h[@#$f, Password=bF1h[H1h[bE!F
+result : -302
+email=1e@d#, Password=1eFbA#@
+result : -1
+email=b#h@hba, Password=b#hb#h[cb#hb#hCAC$
+result : -300
+email=abeb@h1ga, Password=abebabebAabebabebabebbF
+result : -2
+email=@, Password=A@bcB@a#
+result : -300
+email=@, Password=A@$BaBHc
+result : -300
+email=b@d, Password=Hbcb!b
+result : -1
+email=1heh@cdd#, Password=!1heh1heh1hehb1heh
+result : -301
+email=[h$c@#1gb, Password=bG[h$caE[h$c
+result : -302
+email=b$1@dhf, Password=!Cbb$1Gb@c
+result : -303
+email=@, Password=BB!H#Gb@
+result : -300
+email=f[d@dcg, Password=f[d#HbB$f[df[dbH
+result : -300
+email=eh[[@11fg, Password=!eh[[Feh[[aF@b
+result : -301
+email=d@[, Password=daAddA
+result : -1
+email=@, Password=[H[accBE
+result : -300
+email=ce@de, Password=ceFce$ca!cebce
+result : -300
+email=1eh@g[e, Password=1eh1eh!a@AA
+result : -300
+email=@, Password=cbcFG@H
+result : -1
+email=1c@cc, Password=1c@a$a1cC
+result : -300
+email=fc1e@hfaf, Password=!$fc1eF@fc1e!c
+result : -302
+email=hbf@bfc, Password=AbhbfBbhbf#$B
+result : -302
+email=e@c, Password=eee!H!e
+result : -1
+email=fag@cea, Password=!fagABcBfag$a
+result : -301
+email=deha@11b1, Password=EbdehadehaBC@deha
+result : -302
+email=fbf@g1f, Password=EfbfB!!fbfE#b
+result : -301
+email=#b@b1, Password=b#bcb#b#bA#b#b$
+result : -301
+email=ha1c@efcc, Password=CcHbbF@
+result : -1
+email=a@[, Password=a@!aHCaa!
+result : -300
+email=dbf1@gh$f, Password=F!Fdbf1dbf1@Cdbf1BC
+result : -303
+email=e#db@#h[[, Password=e#dbe#dbe#db@bEa[
+result : -300
+email=@, Password=[!!CC$
+result : -1
+email=fd@ga, Password=fdG$[EBHGfd
+result : -300
+email=@, Password=a!!!bE
+result : -1
+email=egcc@cebe, Password=Eegcc!egccAegcc@
+result : -301
+email=aa@fg, Password=E$HaaFb$aa
+result : -303
+email=e$f@dcc, Password=[GAe$fH!!FC$
+result : -303
+email=ecbe@baf1, Password=HecbeH[ecbe!ecbe
+result : -301
+email=bc$@[1e, Password=CCbc$cH@G
+result : -302
+email=1ge@$de, Password=!1gebcGH#
+result : -301
+email=e$hc@1f1a, Password=e$hcG$e$hcae$hc
+result : -300
+email=ebg@f1g, Password=b$bAebg!ebgG#
+result : -304
+email=bafh@fe[a, Password=bafh$bafhG!F
+result : -300
+email=@, Password=[!cbB!
+result : -1
+email=@, Password=!ccbBE!
+result : -1
+email=@, Password=!a[!!
+result : -1
+email=@, Password=BbF#AC
+result : -1
+email=fd@1a, Password=fdbGFfdfdfd
+result : -300
+email=g@h, Password=cg$ggga
+result : -1
+email=a@$, Password=a!!!!b
+result : -1
+email=@, Password=@bGc!@bF
+result : -300
+email=$he$@gghd, Password=a$he$b!$he$a#Bac
+result : -301
+email=@, Password=[@HaBB
+result : -1
+email=f##h@d1gf, Password=F@Fcf##hGB#@
+result : -304
+email=hb@ha, Password=bC!Ccc[#
+result : 6
+email=g@a, Password=b#g!$AFb!
+result : -302
+email=a1@c$, Password=#E!$ba1
+result : -1
+email=d@$, Password=bcGd!$[
+result : -1
+email=@, Password=!@#[F#
+result : -1
+email=1fdh@bhbf, Password=FabC#c[1fdh@1fdh
+result : -307
+email=f1@bg, Password=C!Gf1$f1#f1A
+result : -303
+email=ac@eg, Password=Ecacacac$Ac
+result : -302
+email=@, Password=!aE#[#@
+result : -1
+email=@, Password=E@HACa
+result : -1
+email=c@h, Password=!!Ccc$C
+result : -1
+email=bg@$c, Password=Aa$aCbg
+result : -1
+email=bf@11, Password=Ac#bfbf$
+result : -303
+email=1ca@[bd, Password=B1ca1cac!1cac$1ca
+result : -301
+email=chh@c[b, Password=Echhbchhchhchh
+result : -301
+email=d@b, Password=E@@ABa
+result : -1
+email=@, Password=BH!!#GH
+result : -1
+email=@, Password=!#Ha!!!aF
+result : -300
+email=1c@ec, Password=@1cECF!C
+result : -301
+email=##[@chd, Password=C##[##[###[Fb!
+result : -301
+email=#h1$@f#bf, Password=#h1$#h1$@#h1$#h1$$
+result : -300
+email=1e$@db$, Password=AH1e$a@!@
+result : -302
+email=g1hd@gafa, Password=cAGBbag1hdg1hd!H
+result : -306
+email=egef@fa[f, Password=egefaegefbegefegefA!egef
+result : -2
+email=h@d, Password=HcCEhc
+result : -1
+email=@, Password=C!bA$
+result : -1
+email=h$@[d, Password=h$!H#C!
+result : -1
+email=a@d, Password=aEaBaa@a
+result : -300
+email=1@g, Password=!$1F!!cc
+result : -302
+email=hc1@bdb, Password=HCAabbhc1hc1a
+result : -306
+email=daeb@ahf1, Password=daebEdaeb!FG@cdaeb
+result : -300
+email=@, Password=Acc!F!$A
+result : -300
+email=@, Password=$b#C
+result : -1

@@ -1,0 +1,2 @@
+BEFORE firstMeet EXP1: 1, EXP2: 1, E1: -1
+AFTER firstMeet  EXP1: 1, EXP2: 1, result: -99

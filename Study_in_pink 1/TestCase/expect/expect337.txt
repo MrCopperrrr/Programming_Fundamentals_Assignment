@@ -1,0 +1,2 @@
+BEFORE traceLuggage HP1: 78, EXP1: 533, M1: 210, E2: 51
+AFTER traceLuggage  HP1: 77, EXP1: 600, M1: 60, result: 737

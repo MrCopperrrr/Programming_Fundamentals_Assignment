@@ -1,0 +1,200 @@
+num_pwds = 19
+votien10 xxx xxx votien10 votien votien3 votien votien3 123xyz votien1 pink votien11 123xyz votien11 votien1 kkkk xxx votien1 zzz 
+num_pwds = 24
+votien votien10 votien11 xxx zzz votien3 votien10 xxx$ xxx$ votien1 pink pink zzz xxx xxx votien10 xxx$ xxx votien3 votien11 123xyz votien3 kkkk kkkk 
+num_pwds = 16
+votien11 votien3 xxx$ pink3 pink votien1 votien11 kkkk zzz votien3 123xyz 123xyz votien xxx votien10 votien11 
+num_pwds = 37
+pink3 votien pink pink3 xxx votien1 xxx votien10 votien pink pink votien3 votien votien votien3 votien10 123xyz votien3 123xyz 123xyz zzz pink pink3 kkkk votien10 zzz 123xyz pink3 kkkk xxx votien3 votien1 zzz votien11 votien xxx 123xyz 
+num_pwds = 10
+pink3 votien1 xxx zzz pink3 votien1 votien10 votien11 votien1 pink3 
+num_pwds = 28
+votien11 123xyz votien10 123xyz pink votien11 zzz xxx kkkk kkkk zzz votien11 123xyz xxx$ votien zzz votien1 votien3 123xyz votien votien kkkk 123xyz votien11 votien votien votien11 xxx$ 
+num_pwds = 35
+xxx$ votien3 zzz kkkk votien10 zzz xxx$ votien3 votien11 xxx$ 123xyz xxx zzz votien pink votien11 votien10 votien3 123xyz votien10 pink3 votien1 votien 123xyz kkkk zzz pink3 pink xxx 123xyz votien11 pink3 zzz pink3 votien 
+num_pwds = 37
+xxx$ votien3 votien10 votien11 pink votien1 xxx$ kkkk 123xyz votien1 votien10 xxx$ 123xyz xxx votien10 votien pink3 votien3 xxx votien10 zzz xxx$ votien1 xxx votien10 pink pink kkkk pink3 votien votien11 xxx$ zzz pink votien11 votien10 xxx 
+num_pwds = 32
+pink votien10 votien1 123xyz pink pink3 xxx$ votien3 pink votien11 votien1 123xyz pink3 votien10 votien11 votien1 votien pink3 123xyz kkkk pink3 xxx$ zzz pink3 votien11 xxx$ votien1 pink xxx$ zzz pink3 votien 
+num_pwds = 23
+pink kkkk pink kkkk zzz zzz pink votien votien10 votien3 zzz votien1 pink3 123xyz votien10 votien1 pink xxx votien11 zzz xxx$ votien1 zzz 
+num_pwds = 20
+votien3 xxx xxx pink3 xxx$ votien11 votien3 votien11 xxx 123xyz pink votien3 xxx$ pink votien3 votien10 votien1 zzz xxx$ votien1 
+num_pwds = 36
+votien10 pink votien10 pink kkkk votien1 xxx$ votien10 votien pink3 pink pink3 xxx$ xxx$ pink3 zzz pink pink3 votien votien votien3 votien10 votien3 pink votien votien11 votien10 kkkk kkkk xxx$ xxx$ votien11 votien votien10 123xyz votien11 
+num_pwds = 13
+votien10 votien3 zzz xxx votien votien1 pink pink votien3 votien pink3 pink3 pink 
+num_pwds = 33
+votien10 votien1 votien3 xxx$ votien11 pink pink votien votien11 votien pink kkkk pink3 votien11 xxx$ votien10 123xyz pink xxx$ kkkk xxx votien3 xxx$ pink xxx pink votien3 votien1 pink3 kkkk 123xyz votien11 pink 
+num_pwds = 21
+votien11 pink3 xxx$ votien 123xyz pink pink3 xxx 123xyz xxx$ votien11 votien1 votien10 votien1 votien xxx$ votien kkkk votien1 zzz pink 
+num_pwds = 17
+votien10 xxx$ kkkk xxx votien3 pink pink3 votien10 votien10 pink3 kkkk kkkk zzz xxx xxx$ pink3 zzz 
+num_pwds = 29
+pink pink3 zzz votien10 votien10 zzz pink3 zzz votien3 votien11 zzz pink votien10 123xyz 123xyz xxx$ pink kkkk 123xyz pink votien3 kkkk xxx$ kkkk 123xyz votien1 xxx xxx kkkk 
+num_pwds = 13
+votien10 xxx$ pink3 votien zzz xxx votien3 votien votien11 123xyz xxx xxx$ votien 
+num_pwds = 28
+votien1 votien10 pink xxx$ pink3 votien3 votien3 xxx$ votien1 pink3 pink votien3 pink3 kkkk pink3 pink votien10 votien3 votien1 votien11 votien3 votien3 xxx$ votien3 pink zzz 123xyz kkkk 
+num_pwds = 37
+pink3 zzz xxx$ zzz votien1 zzz xxx$ xxx pink3 xxx votien11 votien10 xxx zzz votien1 zzz votien1 votien10 votien3 votien votien11 votien10 votien votien11 pink zzz pink 123xyz votien10 kkkk pink 123xyz pink3 votien11 123xyz kkkk kkkk 
+num_pwds = 26
+pink3 xxx$ kkkk votien3 xxx votien11 votien11 votien10 zzz votien11 votien11 votien10 votien11 pink3 zzz xxx zzz votien3 xxx xxx$ votien1 zzz xxx votien1 kkkk votien3 
+num_pwds = 27
+votien11 votien1 xxx votien xxx 123xyz votien3 votien xxx$ votien11 pink3 pink3 votien10 123xyz xxx votien10 zzz votien11 xxx$ xxx votien10 zzz xxx$ votien1 pink3 xxx votien 
+num_pwds = 10
+123xyz zzz votien3 votien3 zzz votien10 votien11 votien1 zzz votien 
+num_pwds = 16
+kkkk votien votien11 votien votien3 votien3 123xyz xxx$ votien1 123xyz pink3 votien10 123xyz pink votien10 123xyz 
+num_pwds = 30
+xxx pink votien votien3 xxx zzz kkkk votien10 xxx pink3 pink3 zzz votien zzz zzz zzz pink votien3 votien3 123xyz xxx xxx votien10 zzz votien3 xxx pink3 zzz xxx xxx 
+num_pwds = 26
+pink xxx$ votien3 votien votien1 xxx$ xxx$ votien11 123xyz votien votien1 pink3 votien3 kkkk votien3 votien3 zzz votien10 xxx votien11 xxx$ pink3 xxx$ votien1 xxx pink3 
+num_pwds = 15
+votien1 kkkk pink3 votien11 votien pink votien11 votien1 xxx votien11 votien votien3 pink3 pink votien10 
+num_pwds = 24
+xxx votien3 votien1 pink pink3 votien3 votien zzz votien3 votien1 votien1 votien11 pink3 pink3 zzz 123xyz kkkk votien11 pink3 zzz kkkk pink kkkk pink3 
+num_pwds = 32
+xxx$ 123xyz xxx 123xyz xxx votien3 votien10 pink3 votien3 kkkk zzz 123xyz votien pink3 votien votien1 xxx$ votien10 pink3 votien3 xxx xxx$ votien3 votien zzz kkkk kkkk votien11 zzz kkkk xxx votien 
+num_pwds = 16
+votien1 pink3 zzz votien10 pink xxx pink3 votien1 pink votien10 votien11 votien11 votien zzz kkkk votien11 
+num_pwds = 15
+123xyz kkkk pink3 votien votien10 votien3 zzz pink3 votien11 votien3 votien1 votien1 xxx zzz xxx 
+num_pwds = 40
+votien3 votien11 xxx$ xxx$ zzz xxx$ votien votien3 votien10 xxx$ votien1 votien3 votien10 votien10 pink3 123xyz zzz votien zzz xxx$ pink xxx$ xxx$ votien11 pink3 pink pink3 votien11 kkkk votien votien1 kkkk votien votien11 xxx zzz pink votien1 votien zzz 
+num_pwds = 14
+pink3 votien1 pink xxx$ zzz votien11 zzz zzz xxx$ pink pink3 xxx$ votien kkkk 
+num_pwds = 26
+votien11 123xyz zzz pink3 kkkk votien1 votien3 votien1 votien10 votien3 zzz xxx$ xxx zzz pink xxx$ xxx$ xxx$ votien zzz 123xyz pink votien3 zzz 123xyz 123xyz 
+num_pwds = 16
+123xyz xxx 123xyz votien kkkk votien10 xxx votien3 xxx votien10 123xyz votien votien10 xxx$ pink3 pink 
+num_pwds = 14
+pink3 votien votien11 votien3 pink votien pink kkkk pink xxx zzz xxx$ xxx$ xxx$ 
+num_pwds = 32
+votien3 votien10 pink votien3 xxx$ votien1 kkkk xxx$ votien1 pink votien10 kkkk votien3 kkkk votien10 zzz kkkk pink votien1 pink votien10 kkkk xxx xxx$ votien11 votien1 xxx pink3 votien10 pink3 votien3 votien 
+num_pwds = 29
+votien10 123xyz votien1 votien votien1 zzz pink kkkk 123xyz zzz pink3 pink3 kkkk xxx kkkk kkkk kkkk votien1 votien xxx pink3 xxx$ 123xyz votien1 votien1 zzz pink3 kkkk xxx 
+num_pwds = 19
+votien votien1 pink xxx$ votien11 votien1 xxx pink pink3 xxx votien3 kkkk votien3 xxx xxx$ pink zzz votien1 votien11 
+num_pwds = 17
+pink3 zzz zzz 123xyz votien10 votien1 votien3 pink zzz votien votien1 123xyz kkkk xxx 123xyz pink kkkk 
+num_pwds = 13
+pink pink votien votien10 votien zzz xxx$ pink zzz zzz 123xyz xxx$ 123xyz 
+num_pwds = 18
+123xyz votien1 xxx$ kkkk votien10 xxx zzz votien1 kkkk 123xyz votien3 kkkk votien11 votien votien10 pink3 votien10 pink 
+num_pwds = 35
+votien3 xxx$ votien3 zzz xxx$ zzz 123xyz 123xyz votien11 votien11 kkkk votien10 zzz xxx$ votien xxx$ pink3 votien10 xxx 123xyz kkkk votien3 xxx xxx 123xyz zzz xxx$ pink3 xxx$ votien xxx$ xxx pink3 kkkk pink3 
+num_pwds = 36
+votien11 kkkk pink3 xxx xxx votien1 votien1 votien3 votien3 votien11 pink3 kkkk 123xyz votien pink3 votien10 votien xxx$ pink3 pink3 123xyz votien3 zzz votien10 votien1 votien10 votien3 pink votien votien kkkk votien11 votien1 123xyz zzz pink 
+num_pwds = 13
+pink3 votien1 pink3 123xyz kkkk votien votien votien votien3 votien votien10 votien10 zzz 
+num_pwds = 17
+xxx pink kkkk xxx pink3 xxx$ xxx 123xyz 123xyz pink3 zzz votien1 xxx$ 123xyz votien3 votien3 pink3 
+num_pwds = 32
+pink zzz pink votien10 kkkk pink xxx$ pink votien votien1 kkkk xxx pink 123xyz 123xyz pink 123xyz votien11 xxx$ votien1 votien1 pink3 pink3 votien10 votien3 xxx$ votien10 123xyz xxx$ zzz votien11 votien10 
+num_pwds = 26
+123xyz votien11 votien xxx$ votien3 pink3 votien1 votien votien11 xxx$ pink zzz votien11 xxx$ kkkk pink3 pink votien 123xyz 123xyz xxx$ votien11 pink kkkk votien10 votien10 
+num_pwds = 13
+votien11 kkkk votien11 votien11 votien1 pink votien10 pink zzz xxx 123xyz xxx$ votien10 
+num_pwds = 31
+votien11 votien3 zzz votien xxx xxx votien3 votien3 zzz 123xyz votien1 xxx$ pink pink3 pink3 xxx$ xxx votien11 xxx$ votien3 votien10 votien11 votien11 pink3 pink xxx zzz votien zzz zzz zzz 
+num_pwds = 21
+zzz kkkk votien1 votien votien1 votien1 123xyz kkkk pink votien zzz zzz xxx$ pink3 pink votien votien10 123xyz zzz xxx pink 
+num_pwds = 26
+kkkk xxx zzz xxx 123xyz pink xxx$ votien3 pink kkkk votien1 zzz votien11 votien3 xxx$ xxx 123xyz xxx votien1 xxx$ votien votien1 votien3 votien10 123xyz xxx$ 
+num_pwds = 33
+pink3 votien1 xxx votien1 votien zzz votien10 votien10 votien3 123xyz zzz kkkk votien11 votien3 kkkk votien11 123xyz xxx$ xxx votien1 votien3 kkkk xxx$ votien10 xxx$ pink votien votien3 votien11 votien3 kkkk xxx xxx 
+num_pwds = 25
+pink votien1 pink 123xyz votien10 xxx xxx$ votien xxx$ kkkk xxx$ 123xyz 123xyz votien1 votien10 votien kkkk pink3 votien10 123xyz votien11 pink kkkk zzz votien10 
+num_pwds = 21
+votien1 xxx kkkk kkkk xxx votien3 xxx$ xxx$ xxx votien1 votien10 pink xxx xxx$ votien11 votien11 kkkk xxx$ votien10 xxx votien10 
+num_pwds = 21
+kkkk kkkk pink3 pink votien3 xxx$ kkkk xxx pink3 votien11 123xyz xxx votien3 votien zzz 123xyz pink votien1 zzz kkkk votien10 
+num_pwds = 14
+votien pink3 votien3 votien11 kkkk 123xyz votien11 123xyz votien11 votien10 123xyz votien votien1 votien1 
+num_pwds = 16
+xxx$ pink votien1 pink3 123xyz votien votien10 votien11 xxx pink zzz votien xxx votien10 pink votien10 
+num_pwds = 11
+xxx votien3 votien10 kkkk votien3 votien3 votien10 xxx votien3 votien xxx 
+num_pwds = 28
+kkkk xxx 123xyz zzz votien10 votien3 xxx votien3 kkkk votien votien3 votien11 123xyz votien11 pink3 xxx$ votien11 kkkk xxx xxx votien1 votien11 123xyz votien11 zzz xxx pink3 votien 
+num_pwds = 40
+votien kkkk zzz 123xyz votien votien11 votien3 votien3 votien10 123xyz zzz votien3 kkkk xxx$ pink 123xyz kkkk votien11 xxx votien3 xxx$ pink3 votien1 votien kkkk votien votien1 votien 123xyz zzz pink3 votien3 zzz votien10 votien10 zzz votien1 xxx pink xxx 
+num_pwds = 37
+123xyz pink3 votien11 votien3 zzz pink3 votien1 votien3 pink3 kkkk votien3 pink3 votien1 xxx zzz kkkk 123xyz pink3 123xyz pink xxx$ 123xyz votien votien pink zzz pink3 votien10 zzz pink3 votien10 votien3 pink3 votien10 xxx$ kkkk votien1 
+num_pwds = 34
+votien3 zzz zzz pink3 xxx xxx xxx votien3 pink xxx$ pink votien votien kkkk votien11 votien11 votien votien11 votien10 123xyz votien11 zzz votien1 votien10 xxx pink votien10 votien votien10 votien1 kkkk votien3 votien3 votien3 
+num_pwds = 24
+xxx$ kkkk votien10 votien votien3 votien10 votien11 votien11 pink votien11 votien3 xxx$ votien1 pink3 votien10 votien10 votien11 zzz votien1 kkkk pink3 pink3 pink votien3 
+num_pwds = 31
+votien 123xyz votien1 pink3 kkkk votien3 votien11 pink pink3 123xyz pink xxx$ xxx$ votien1 xxx votien1 pink3 123xyz votien10 votien 123xyz 123xyz zzz 123xyz xxx 123xyz xxx$ votien3 votien votien11 123xyz 
+num_pwds = 37
+votien3 xxx kkkk pink3 votien1 kkkk pink3 votien3 votien3 votien10 pink votien11 votien11 xxx$ pink xxx pink3 zzz pink3 votien3 pink3 votien10 xxx$ zzz votien11 votien11 xxx pink3 votien10 kkkk pink3 pink3 pink3 123xyz votien3 votien3 123xyz 
+num_pwds = 22
+votien1 pink 123xyz 123xyz votien3 votien1 votien11 xxx votien10 kkkk pink 123xyz votien1 votien10 xxx$ pink3 xxx$ votien11 pink3 votien votien 123xyz 
+num_pwds = 13
+xxx xxx$ votien votien zzz kkkk votien10 pink pink zzz xxx$ votien3 pink 
+num_pwds = 31
+xxx pink3 pink kkkk kkkk xxx votien11 123xyz 123xyz votien1 votien1 votien pink kkkk 123xyz kkkk 123xyz kkkk pink votien1 votien xxx$ votien3 votien11 kkkk xxx xxx$ 123xyz votien10 pink xxx 
+num_pwds = 15
+votien1 pink votien1 votien votien1 votien pink3 pink zzz votien10 votien3 kkkk zzz zzz kkkk 
+num_pwds = 33
+votien10 xxx votien3 votien11 pink pink3 pink xxx$ kkkk xxx$ zzz votien11 votien3 kkkk pink xxx$ xxx$ votien1 pink kkkk zzz pink3 votien1 kkkk votien3 votien1 votien3 pink3 zzz 123xyz xxx$ xxx xxx 
+num_pwds = 12
+votien kkkk pink3 pink pink kkkk kkkk xxx zzz pink3 123xyz votien10 
+num_pwds = 36
+votien3 123xyz pink xxx$ pink3 kkkk xxx votien1 votien11 votien votien3 xxx$ zzz pink3 votien10 xxx$ votien3 xxx$ 123xyz pink votien votien1 zzz votien3 pink3 123xyz votien1 votien3 123xyz votien votien11 votien xxx votien10 pink pink 
+num_pwds = 24
+xxx pink votien10 123xyz votien pink3 123xyz votien11 votien1 123xyz 123xyz 123xyz kkkk zzz votien1 votien votien11 votien11 kkkk pink3 votien votien1 xxx$ pink3 
+num_pwds = 25
+votien11 pink zzz zzz zzz votien11 kkkk votien3 pink pink votien10 votien11 votien3 votien kkkk 123xyz xxx$ kkkk votien11 votien pink3 kkkk votien votien10 xxx 
+num_pwds = 21
+votien1 votien10 votien11 pink votien1 votien1 kkkk pink3 pink3 votien10 pink3 kkkk kkkk votien kkkk 123xyz 123xyz votien10 123xyz votien3 123xyz 
+num_pwds = 36
+xxx$ votien10 votien1 xxx votien1 xxx zzz xxx xxx pink votien10 votien11 votien10 xxx$ zzz votien votien11 votien pink3 votien10 votien3 pink3 xxx pink votien10 votien11 123xyz votien11 votien10 xxx pink pink3 votien11 votien3 kkkk votien 
+num_pwds = 27
+votien10 zzz pink3 votien10 votien1 pink xxx$ pink3 zzz votien xxx$ pink3 votien11 xxx$ pink votien1 votien pink3 pink3 votien votien3 votien3 123xyz kkkk 123xyz votien3 123xyz 
+num_pwds = 36
+votien1 pink votien11 votien10 votien1 votien11 votien11 votien1 xxx$ kkkk votien11 votien11 pink votien3 zzz votien1 xxx$ xxx 123xyz zzz votien3 votien votien1 xxx pink3 votien 123xyz kkkk votien3 xxx votien1 votien1 votien1 votien10 votien11 123xyz 
+num_pwds = 14
+pink zzz 123xyz votien3 votien kkkk votien3 pink kkkk votien3 votien1 xxx votien1 votien11 
+num_pwds = 19
+xxx$ pink3 pink3 xxx$ xxx$ pink3 kkkk votien 123xyz kkkk votien11 xxx$ xxx$ votien3 zzz 123xyz pink3 zzz kkkk 
+num_pwds = 39
+pink3 123xyz votien11 pink3 pink 123xyz votien3 zzz pink votien11 123xyz votien3 123xyz votien10 123xyz votien10 votien3 pink3 xxx$ zzz votien3 xxx kkkk zzz votien10 zzz 123xyz kkkk pink3 pink3 kkkk kkkk pink3 xxx xxx$ votien kkkk votien3 pink 
+num_pwds = 14
+votien1 xxx$ 123xyz zzz votien10 xxx kkkk xxx$ kkkk votien11 pink pink votien10 pink 
+num_pwds = 12
+votien10 xxx$ 123xyz votien1 votien11 xxx pink3 123xyz votien3 pink xxx votien 
+num_pwds = 16
+xxx$ pink votien3 zzz pink3 pink3 pink3 123xyz pink xxx votien3 votien votien kkkk 123xyz 123xyz 
+num_pwds = 24
+votien1 pink votien10 zzz votien zzz votien3 123xyz pink3 123xyz 123xyz pink3 zzz votien kkkk pink votien pink3 votien zzz xxx$ xxx$ kkkk zzz 
+num_pwds = 31
+kkkk votien3 votien3 votien10 votien1 pink pink zzz 123xyz 123xyz kkkk xxx kkkk pink votien pink3 123xyz 123xyz pink kkkk votien1 votien1 votien3 votien1 pink votien10 xxx votien10 votien11 xxx$ zzz 
+num_pwds = 29
+votien3 zzz votien votien11 votien3 votien11 123xyz kkkk pink zzz pink3 votien1 xxx$ pink votien3 zzz 123xyz votien zzz xxx$ 123xyz pink votien10 pink3 xxx xxx votien votien1 kkkk 
+num_pwds = 17
+votien1 votien1 xxx votien11 votien11 xxx$ xxx$ xxx votien1 votien pink3 votien11 votien1 pink3 votien3 votien3 votien 
+num_pwds = 26
+pink3 xxx votien11 pink votien10 votien votien11 xxx votien11 zzz pink votien11 kkkk votien1 kkkk pink3 xxx votien1 pink3 pink votien11 pink votien1 kkkk votien1 xxx 
+num_pwds = 17
+votien11 xxx votien3 votien1 votien1 zzz votien1 kkkk xxx$ votien1 votien1 xxx votien1 votien11 zzz kkkk votien10 
+num_pwds = 22
+pink3 votien11 votien10 kkkk kkkk 123xyz xxx xxx votien3 votien3 pink3 zzz pink zzz votien10 zzz xxx zzz 123xyz pink3 votien3 xxx 
+num_pwds = 39
+zzz votien1 pink3 123xyz votien1 zzz zzz xxx votien votien pink kkkk votien zzz pink3 123xyz votien pink xxx$ votien1 votien3 votien xxx$ votien11 pink votien1 kkkk votien10 votien xxx 123xyz votien pink3 pink xxx xxx$ votien11 zzz pink3 
+num_pwds = 20
+votien xxx$ xxx votien1 123xyz votien1 123xyz zzz votien1 votien pink votien votien10 votien3 123xyz votien votien votien11 pink3 votien10 
+num_pwds = 30
+votien11 votien3 votien votien votien1 kkkk 123xyz xxx$ votien votien11 xxx$ votien11 votien3 zzz zzz votien11 votien3 xxx$ pink kkkk votien zzz zzz votien10 kkkk votien3 123xyz 123xyz kkkk kkkk 
+num_pwds = 39
+votien11 xxx xxx kkkk votien10 xxx xxx$ votien11 votien11 votien11 pink xxx 123xyz votien votien3 zzz kkkk votien10 votien xxx pink pink3 votien11 xxx kkkk votien11 votien1 xxx votien1 123xyz votien1 123xyz votien11 xxx pink pink votien3 votien11 zzz 
+num_pwds = 34
+pink3 votien3 votien1 123xyz pink3 votien10 123xyz xxx votien11 votien3 123xyz 123xyz votien pink3 votien11 votien votien1 xxx$ xxx$ votien10 123xyz xxx xxx$ pink3 123xyz votien votien3 votien3 votien kkkk 123xyz votien11 zzz votien10 
+num_pwds = 11
+votien11 votien10 pink kkkk kkkk pink zzz zzz kkkk pink3 votien10 
+num_pwds = 38
+votien10 votien1 xxx zzz votien votien votien3 votien1 pink pink3 votien1 xxx xxx votien11 xxx$ 123xyz xxx votien11 xxx$ kkkk zzz pink3 votien3 xxx$ kkkk votien11 votien1 xxx$ votien11 votien3 123xyz votien votien1 123xyz xxx$ votien10 votien3 123xyz 
+num_pwds = 25
+votien pink zzz xxx$ xxx zzz votien kkkk xxx$ 123xyz 123xyz pink xxx$ votien3 pink xxx votien xxx votien3 zzz votien1 123xyz votien10 pink3 kkkk 

@@ -1,0 +1,200 @@
+email=bfh[e1hbb1@[aghb11ah[, Password=Aegf1daC#eA1CdBg##bg
+result : -10
+email=[$fdfhagfec@e$f[ggbb$ab, Password=hCaE[HEE#$afFf1aH!E[c
+result : -2
+email=gef@e1d, Password=@1gc[eb[
+result : 4
+email=cgbagb1fc1dgh@$bcc11faf1aga, Password=!$@@AB$g1EeHG$G@GH
+result : -10
+email=@, Password=hb@cFda11![C!!C!
+result : -300
+email=a$ch$dgh@d[eecgbd, Password=![dd!aB!b1Hdfe!Ha
+result : 1
+email=b@e, Password=fBE[#Eg
+result : -1
+email=bahdff[h[@1hecge1c[, Password=EaHGBEHg$B
+result : -10
+email=cca@1da, Password=Ce@H!ehA1c@#!
+result : -10
+email=ffde[e1[gbgf@ebadg$gechdf, Password=#FB!!!!
+result : -1
+email=f@h, Password=g!!b!#dceBbFce
+result : -10
+email=1$h@c$b, Password=bB#GeH1GHBf1bfFg11
+result : -10
+email=geefbadged11@fd1ba#eb1$ab, Password=GC@GFCbbHa!CBCH$!
+result : -10
+email=ebbaggfdc$b1hdd@geh1hff1acgbc1b, Password=EBA@#[C
+result : -1
+email=ab@[[, Password=#e!A$dd!EdC@GgFa@
+result : -10
+email=ed@cd, Password=#daBhhF$fFH
+result : -10
+email=dea@gh$, Password=a!C$hhE!GFd
+result : -10
+email=h1gg$@cgcb1, Password=!!FcdceAA!c
+result : -10
+email=ee1hea$cdhe$fh1@ff#d$ehhgaefbhg, Password=F1fh@fh1fehae!
+result : -10
+email=$hfh#cfed@d$feacb1h, Password=b![hBg!1CaH!1[cA[
+result : 2
+email=[1f@eab, Password=FaGA!FC1
+result : -10
+email=e#gfc$d@cd[11df, Password=!A@@1$h!CgcC
+result : -10
+email=d1#ebg1he@ffcca#a[1, Password=H!HGb#1Ada@e!!
+result : -10
+email=$1$@feb, Password=dd!!a!eBHha@!1h#gc
+result : -10
+email=1hhc1dcdbb@bchaggd##a, Password=g1hCHCgaEAEB!#GbhdBCa
+result : -2
+email=af1gefbe@ec#hgd1d, Password=eHG!!F$#ehbdbgdABgC1f
+result : -2
+email=$d@ba, Password=#$!Fc!#![ecEg1HA@e
+result : 8
+email=[gba@dcdc, Password=!#A@a1bh!gh$1g!
+result : -10
+email=1fa@1ca, Password=dafffBGBe11Gdff[h1c@
+result : -402
+email=ac[ad[eac11c@f$h11hee[fcf, Password=aCf#aEf!Bd1dHf$Bgg
+result : -10
+email=eded1fa@cdehcea, Password=!bhA!@eB@@!Gh!
+result : -10
+email=faehch@[a$gdd, Password=aCfA[!dFF
+result : 4
+email=hbhgbgd1aea1$@ggh1acgc#b#g[, Password=ea1h!BGGGhabEh@
+result : -406
+email=dh#11#[g1$dgahf@[f1bh$gdbfabdd#, Password=eBB1EfbhA$B
+result : -10
+email=@, Password=C1!!bE!$F$
+result : -300
+email=cfgbgehccefdadh@ae1f[11bg1hhf11, Password=CGCE#Be1
+result : -10
+email=bchbcdgaadgdc@cdbf[#bb1eg1e, Password=$$hhhgaf!#
+result : -402
+email=e1fbbb1f1#ghg@a$hf1hhe$fc$a, Password=!1b@1F
+result : -1
+email=dh[ggb#ee@caba11f[#, Password=F[HFhc
+result : -1
+email=eab#edh1aad#f@gf#hghb1dcegc, Password=[F1ab#fCHC1C!!E#1!b
+result : 0
+email=@, Password=hdB11b$BFbe#@!Ba1!e[
+result : -300
+email=a@g, Password=!$gfeb!h
+result : -10
+email=f#hfd#dccba@dchee$hadg$, Password=eAcFeGeAfC1G
+result : -5
+email=@, Password=fa#C!EG!EefB1@CfH
+result : -300
+email=dgcghbbfaga@d$beeg#h#dd, Password=F1#a1g@H@#H!HG
+result : -10
+email=bbhbffbe$dd@[gab$fcf[[f, Password=@BA#ghH1Bbf@Af!
+result : -10
+email=#hf$g@$dg#b, Password=c[@!!d
+result : -1
+email=fbfgece@dchcefc, Password=@ehdBAcEfEaEf!h
+result : -10
+email=d1f1gcac[#[[edh@fhc1eaadbhc[a$f, Password=aG1eB1!fd!
+result : -10
+email=bae1fgaeg@egdadb$g[, Password=dbhf!eEg
+result : -10
+email=eeg@#bd, Password=hcE!dHHb@1cbg@b#
+result : -10
+email=g1ee1dhhgcc1[11@fhacchff[hdcdgf, Password=#EF$CfgG
+result : -10
+email=$fdg#dfbc[cb#@cabgcbhbb#cdh, Password=a[g!hEBbf@!HFeaAc
+result : 1
+email=b[1b1faah#gafa@f[#abc$edegedf, Password=!A!!!f!!Ff#
+result : -402
+email=1@b, Password=e!CHbB!!G!
+result : -10
+email=dffecf@[hadbe, Password=@B[hBAAhHef
+result : 2
+email=c[g1bg@beg1fg, Password=gCBh!1ad
+result : -10
+email=#[[edf@cedcdc, Password=HhAd@!@@
+result : -10
+email=1d@dg, Password=fF$HB#A@G
+result : -10
+email=$fadhc1dcgcchc[@dbbe$f#fd[gh#ea, Password=HGfFBfGAgG!
+result : -10
+email=g$fdhce$bd@ebecch#a1a, Password=H$gb$[GAe1cch!heC
+result : 5
+email=1@f, Password=11#cd@b!!GCg@g
+result : -300
+email=bc1[g#c@dagbef[, Password=Fd1fHgB$Bfd#$@!ECc
+result : -10
+email=adeca$gbbe@ed#1bfdh[g, Password=h#d@e$Gc$a!A!B@[
+result : 15
+email=def$dfbd$afb@#chbceb[$dbf, Password=hCBFffCCEHC!@
+result : -10
+email=g[c@gb[, Password=A@1E@#@b[@cfaf1!Bc!C
+result : 8
+email=afh#fafga@1#hd[gdfc, Password=a#$C1gg
+result : -1
+email=efef#af#gc1e@a11hha$hh$ee, Password=f$FbCgeA!
+result : -10
+email=afh@dcf, Password=efHa@fb#F@a
+result : -10
+email=1cde$edf1bh#f@ffagfff1a1$1a, Password=GcH@C!!d@baEffG#
+result : -10
+email=f$@hb, Password=eefBF1faaEddCba##!HHF
+result : -2
+email=fa11g@ebg[b, Password=!gfgH!
+result : -1
+email=cfgbaf[#cbeb@ehdged[#da#d, Password=ea@eab@Ah
+result : -10
+email=bgbac1g@cb[fha#, Password=dFEEcEcE$ch[BB#!Gb
+result : 11
+email=ad1[@1dba, Password=@gAAdc
+result : -1
+email=$@f, Password=fG!ccgBFeHf!$$
+result : -312
+email=bhcdge[ehae@ac1g[[[e$ha, Password=BhadBEd!$CFGC!$d@$
+result : -10
+email=1e1a@af#a, Password=G@#@b[c#
+result : 5
+email=$fhagh#fg#gdbf@ce$[c1ecddec[f, Password=e$AafBHhE!1!dgd#!eg
+result : -10
+email=[afacgbdae@ce#acffe1#, Password=A!B@CH!H!!a
+result : -10
+email=g1c[gcdbe@$ebccfa1c, Password=EeBb1b@dE!hBgAAF1
+result : -10
+email=bhed@cbd[, Password=!#GEE@FA
+result : -10
+email=dgc[$@cbgg#, Password=B!#gBBh@G[
+result : 9
+email=acgeh#c@$h#ae11, Password=1!@@FFCHbb
+result : -10
+email=1[d1cfch[ece@ffed#ec[cegh, Password=eh#G#$AAfBg
+result : -10
+email=efebgfeg@$g$ec1[e, Password=c1F!fGA
+result : -1
+email=fe#1#bg@gdd1deg, Password=h#f@BF
+result : -1
+email=[a#e$dgddc1d1b@fdaf[dghh#cafa, Password=CgHebHC@GBf$
+result : -10
+email=eeh@1ah, Password=[fFh#!!#fCBdB!!bA
+result : 0
+email=c1hgaf1ggdfbg@h##eh[dhdeee[, Password=d$BcaBFgdGBHcc[
+result : 14
+email=chc[dae1gbchae@cdeagc[haecffc, Password=BA1Ecaaa$!hB1bBdd
+result : -405
+email=dhfggf[@[1egab1, Password=ChFHb!!bcb@Bgh
+result : -10
+email=a$$gcc#@gdfb[b1, Password=$gcaHhhBC!@efhAf
+result : -10
+email=bdc#@b$gh, Password=cgBG!@CBC$fa!h1#b
+result : -10
+email=bbadfhhha#c1b@ggc1cbbehbfch, Password=!$@c1ffd$F
+result : -10
+email=@, Password=E@!Ah!Bh
+result : -300
+email=b1a@fe1, Password=CcgeBE@fGdAF$H#@c1BhH
+result : -2
+email=hd@fh, Password=[E1hhfcA$b@1e$heAbGFA
+result : -2
+email=1$dc#fagc@efffdebdb, Password=H#@a!A1CEGA1cg
+result : -10
+email=ga1heh@b[1$g[, Password=@bbgAB@d#1cc@cFcb$
+result : -10

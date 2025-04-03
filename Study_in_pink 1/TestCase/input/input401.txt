@@ -1,0 +1,36 @@
+email = Votien@gmail.com
+Password = Votien1
+email = Votien@gmail.com
+Password = Votien123456789123456
+email = Votien@gmail.com
+Password = Votien123
+email = V@gmail.com
+Password = VVaaa1234
+email = @gmail.com
+Password = VVaaa122234
+email = Votien@gmail.com
+Password = Votien12aa3
+email = Votien@gmail.com
+Password = Votien12aaa
+email = Votien@gmail.com
+Password = VVVotien12aa
+email = Votienz@gmail.com
+Password = votiendeptrai
+email = Votienz@gmail.com
+Password = votien[deptrai
+email = Votienz@gmail.com
+Password = vot-ien[deptrai
+email = Votienz@gmail.com
+Password = *vot-ien[deptrai
+email = Votienz@gmail.com
+Password = votiendeptrai)
+email = Votienz@gmail.com
+Password = votiendeptrai@
+email = Votienz@gmail.com
+Password = votiendeptrai$Ok
+email = @gmail.com
+Password = votiendeptrai$Ok
+email = @
+Password = votiendeptrai$Ok
+
+

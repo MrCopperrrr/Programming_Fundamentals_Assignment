@@ -1,0 +1,36 @@
+email=Votien@gmail.com, Password=Votien1
+result : -1
+email=Votien@gmail.com, Password=Votien123456789123456
+result : -2
+email=Votien@gmail.com, Password=Votien123
+result : -300
+email=V@gmail.com, Password=VVaaa1234
+result : -300
+email=@gmail.com, Password=VVaaa122234
+result : -300
+email=Votien@gmail.com, Password=Votien12aa3
+result : -300
+email=Votien@gmail.com, Password=Votien12aaa
+result : -300
+email=Votien@gmail.com, Password=VVVotien12aa
+result : -302
+email=Votienz@gmail.com, Password=votiendeptrai
+result : -5
+email=Votienz@gmail.com, Password=votien[deptrai
+result : -5
+email=Votienz@gmail.com, Password=vot-ien[deptrai
+result : -5
+email=Votienz@gmail.com, Password=*vot-ien[deptrai
+result : -5
+email=Votienz@gmail.com, Password=votiendeptrai)
+result : -5
+email=Votienz@gmail.com, Password=votiendeptrai@
+result : -10
+email=Votienz@gmail.com, Password=votiendeptrai$Ok
+result : -10
+email=@gmail.com, Password=votiendeptrai$Ok
+result : -300
+email=@, Password=votiendeptrai$Ok
+result : -300
+email=@, Password=votiendeptrai$Ok
+result : -300

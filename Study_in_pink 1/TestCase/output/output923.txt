@@ -1,0 +1,6 @@
+BEFORE firstMeet EXP1: 360, EXP2: 356, E1: 83
+AFTER firstMeet  EXP1: 277, EXP2: 518, result: 795
+BEFORE traceLuggage HP1: 267, EXP1: 277, M1: 50, E2: 48
+AFTER traceLuggage  HP1: 221, EXP1: 390, M1: 0, result: 611
+BEFORE chaseTaxi HP1: 221, EXP1: 390, HP2: 348, EXP2: 518, E3: 44
+AFTER chaseTaxi  HP1: 199, EXP1: 344, HP2: 314, EXP2: 456, result: -2136

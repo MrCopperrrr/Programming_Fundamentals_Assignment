@@ -1,0 +1,2 @@
+BEFORE firstMeet EXP1: 441, EXP2: 438, E1: 46
+AFTER firstMeet  EXP1: 395, EXP2: 465, result: 860

@@ -1,0 +1,2 @@
+BEFORE chaseTaxi HP1: 295, EXP1: 24, HP2: 166, EXP2: 502, E3: 103
+AFTER chaseTaxi  HP1: 295, EXP1: 24, HP2: 166, EXP2: 502, result: -99
